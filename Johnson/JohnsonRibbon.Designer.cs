@@ -61,6 +61,7 @@
             this.btnInitial.Name = "btnInitial";
             this.btnInitial.OfficeImageId = "HappyFace";
             this.btnInitial.ShowImage = true;
+            this.btnInitial.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.OnInitalButtonClick);
             // 
             // JohnsonRibbon
             // 

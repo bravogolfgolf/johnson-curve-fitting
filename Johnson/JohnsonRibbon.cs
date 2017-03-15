@@ -12,5 +12,10 @@ namespace Johnson
         {
 
         }
+
+        private void OnInitalButtonClick(object sender, RibbonControlEventArgs e)
+        {
+        
+        }
     }
 }
