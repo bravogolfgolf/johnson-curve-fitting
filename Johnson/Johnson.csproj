@@ -146,6 +146,7 @@
     can be found.
   -->
   <ItemGroup>
+    <Compile Include="Controller.cs" />
     <Compile Include="JohnsonRibbon.cs">
       <SubType>Component</SubType>
     </Compile>

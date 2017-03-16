@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Office.Tools.Ribbon;
 using Excel = Microsoft.Office.Interop.Excel;
+using Controllers;
 
 namespace Johnson
 {
@@ -21,7 +22,7 @@ namespace Johnson
             var range = Globals.ThisAddIn.Application.InputBox(Prompt: Prompt, Title: Title, Type: 8);
             if (range is Excel.Range)
             {
-                ;
+                new InitialController().Execute();
             }
         }
     }
