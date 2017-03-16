@@ -156,7 +156,7 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Usecases\Usecase.cs" />
+    <Compile Include="Usecase.cs" />
     <EmbeddedResource Include="JohnsonRibbon.resx">
       <DependentUpon>JohnsonRibbon.cs</DependentUpon>
     </EmbeddedResource>
