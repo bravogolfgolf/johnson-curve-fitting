@@ -1,5 +1,4 @@
-﻿using System;
-using Requests;
+﻿using Requests;
 using Responders;
 
 namespace Usecases
