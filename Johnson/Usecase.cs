@@ -1,15 +1,18 @@
-﻿namespace Usecases
+﻿using System;
+using Requests;
+
+namespace Usecases
 {
     public interface IUsecase
     {
-        void Execute();
+        void Execute(IRequest request);
     }
 
     public class InitialUsecase : IUsecase
     {
-        public void Execute()
+        public void Execute(IRequest request)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }

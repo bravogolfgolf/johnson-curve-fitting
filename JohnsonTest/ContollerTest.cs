@@ -1,6 +1,6 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Usecases;
+using Requests;
 
 namespace Controllers
 {
@@ -9,7 +9,7 @@ namespace Controllers
     {
         private bool executeMethodCalled = false;
 
-        void IUsecase.Execute()
+        public void Execute(IRequest request)
         {
             executeMethodCalled = true;
         }
@@ -17,11 +17,10 @@ namespace Controllers
         [TestMethod]
         public void ShouldCallInitialUsecase()
         {
-            InitialController controller = new InitialController(this);
+            IRequest request = new InitialRequest();
+            InitialController controller = new InitialController(request, this);
             controller.Execute();
             Assert.IsTrue(executeMethodCalled);
         }
-
-        
     }
 }

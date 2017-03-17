@@ -1,4 +1,5 @@
-﻿using Usecases;
+﻿using Requests;
+using Usecases;
 
 namespace Controllers
 {
@@ -9,16 +10,18 @@ namespace Controllers
 
     public class InitialController : IController
     {
-        IUsecase usecase;
+        private IUsecase usecase;
+        private IRequest request;
 
-        public InitialController(IUsecase usecase)
+        public InitialController(IRequest request, IUsecase usecase)
         {
             this.usecase = usecase;
+            this.request = request;
         }
 
         public void Execute()
         {
-            usecase.Execute();
+            usecase.Execute(request);
         }
     }
 }
