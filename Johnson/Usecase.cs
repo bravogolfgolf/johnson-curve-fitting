@@ -1,5 +1,6 @@
 ﻿using System;
 using Requests;
+using Responders;
 
 namespace Usecases
 {
@@ -10,9 +11,16 @@ namespace Usecases
 
     public class InitialUsecase : IUsecase
     {
+        private IResponder responder;
+
+        public InitialUsecase(IResponder responder)
+        {
+            this.responder = responder;
+        }
+
         public void Execute(IRequest request)
         {
-            throw new NotImplementedException();
+            responder.Present();
         }
     }
 }

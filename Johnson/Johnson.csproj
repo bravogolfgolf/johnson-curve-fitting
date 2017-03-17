@@ -180,6 +180,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Request.cs" />
+    <Compile Include="Responder.cs" />
     <Compile Include="Usecase.cs" />
     <EmbeddedResource Include="JohnsonRibbon.resx">
       <DependentUpon>JohnsonRibbon.cs</DependentUpon>
