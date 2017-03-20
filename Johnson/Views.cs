@@ -1,4 +1,5 @@
 ﻿using System;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace Johnson
 {
@@ -11,7 +12,9 @@ namespace Johnson
     {
         public void GenerateView()
         {
-            throw new NotImplementedException();
+            int count = Globals.ThisAddIn.Application.Sheets.Count;
+            Excel.Worksheet lastWorksheet = Globals.ThisAddIn.Application.ActiveWorkbook.Sheets[count];
+            Excel.Worksheet worksheet = Globals.ThisAddIn.Application.Worksheets.Add(After: lastWorksheet);
         }
     }
 }
