@@ -1,13 +1,8 @@
-﻿using Requests;
+﻿using Requestors;
 using Responders;
 
 namespace Usecases
 {
-    public interface IUsecase
-    {
-        void Execute(IRequest request);
-    }
-
     public class InitialUsecase : IUsecase
     {
         private IResponder responder;

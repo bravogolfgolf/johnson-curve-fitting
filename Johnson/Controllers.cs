@@ -1,13 +1,8 @@
-﻿using Requests;
+﻿using Requestors;
 using Usecases;
 
 namespace Controllers
 {
-    interface IController
-    {
-        void Execute();
-    }
-
     public class InitialController : IController
     {
         private IUsecase usecase;

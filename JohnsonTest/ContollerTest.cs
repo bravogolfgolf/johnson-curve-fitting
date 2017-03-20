@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Usecases;
-using Requests;
+using Requestors;
 
 namespace Controllers
 {

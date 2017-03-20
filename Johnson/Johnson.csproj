@@ -169,7 +169,7 @@
     can be found.
   -->
   <ItemGroup>
-    <Compile Include="Controller.cs" />
+    <Compile Include="Controllers.cs" />
     <Compile Include="JohnsonRibbon.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -179,9 +179,11 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Request.cs" />
-    <Compile Include="Responder.cs" />
-    <Compile Include="Usecase.cs" />
+    <Compile Include="Requestors.cs" />
+    <Compile Include="Presenters.cs" />
+    <Compile Include="Responders.cs" />
+    <Compile Include="Usecases.cs" />
+    <Compile Include="Views.cs" />
     <EmbeddedResource Include="JohnsonRibbon.resx">
       <DependentUpon>JohnsonRibbon.cs</DependentUpon>
     </EmbeddedResource>
@@ -214,6 +216,7 @@
     </Compile>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

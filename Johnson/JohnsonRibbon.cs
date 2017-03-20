@@ -18,7 +18,7 @@ namespace Johnson
             var range = Globals.ThisAddIn.Application.InputBox(Prompt: Prompt, Title: Title, Type: 8);
             if (range is Excel.Range)
             {
-                new InitialController(new Requests.InitialRequest(), new Usecases.InitialUsecase(new Responders.InitialResponder())).Execute();
+                new InitialController(new Requestors.InitialRequest(), new Usecases.InitialUsecase(new Johnson.InitialPresenter(new InitialView()))).Execute();
             }
         }
     }

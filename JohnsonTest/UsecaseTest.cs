@@ -1,8 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Requests;
+using Requestors;
 using Usecases;
+using Responders;
 
-namespace Responders
+namespace Johnson
 {
     [TestClass]
     public class UsecaseTest : IResponder
