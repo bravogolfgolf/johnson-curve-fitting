@@ -15,7 +15,7 @@ namespace Johnson
 
         public void Present()
         {
-           view.GenerateView();
+            view.GenerateView();
         }
     }
 }
