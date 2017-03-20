@@ -1,6 +1,7 @@
 ﻿using Microsoft.Office.Tools.Ribbon;
 using Excel = Microsoft.Office.Interop.Excel;
 using Controllers;
+using Requestors;
 
 namespace Johnson
 {
@@ -18,7 +19,9 @@ namespace Johnson
             var range = Globals.ThisAddIn.Application.InputBox(Prompt: Prompt, Title: Title, Type: LIMIT_TYPE_TO_EXCEL_RANGE);
             if (range is Excel.Range)
             {
-                new InitialController(new Requestors.InitialRequest(), new Usecases.InitialUsecase(new Johnson.InitialPresenter(new InitialView()))).Execute();
+                InitialRequest request = new Requestors.InitialRequest();
+                request.twoDimensionalArray = range.Value2;
+                new InitialController(request, new Usecases.InitialUsecase(new Johnson.InitialPresenter(new InitialView()))).Execute();
             }
         }
     }

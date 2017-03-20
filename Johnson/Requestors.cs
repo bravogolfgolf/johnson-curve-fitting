@@ -13,8 +13,4 @@
     {
         void Execute(IRequest request);
     }
-
-    public class InitialRequest : IRequest
-    {
-    }
 }

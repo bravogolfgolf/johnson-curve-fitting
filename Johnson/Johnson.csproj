@@ -169,7 +169,9 @@
     can be found.
   -->
   <ItemGroup>
-    <Compile Include="Controllers.cs" />
+    <Compile Include="InitialRequest.cs" />
+    <Compile Include="InitialController.cs" />
+    <Compile Include="Histogram.cs" />
     <Compile Include="JohnsonRibbon.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -180,10 +182,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Requestors.cs" />
-    <Compile Include="Presenters.cs" />
+    <Compile Include="InitialPresenter.cs" />
     <Compile Include="Responders.cs" />
-    <Compile Include="Usecases.cs" />
-    <Compile Include="Views.cs" />
+    <Compile Include="InitialUsecase.cs" />
+    <Compile Include="InitialView.cs" />
     <EmbeddedResource Include="JohnsonRibbon.resx">
       <DependentUpon>JohnsonRibbon.cs</DependentUpon>
     </EmbeddedResource>
