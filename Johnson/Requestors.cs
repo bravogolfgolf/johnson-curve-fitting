@@ -1,6 +1,6 @@
 ﻿namespace Requestors
 {
-    interface IController
+    public interface IController
     {
         void Execute();
     }
