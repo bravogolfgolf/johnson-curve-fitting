@@ -1,6 +1,4 @@
-﻿using System;
-using Responders;
-
+﻿using Responders;
 
 namespace Johnson
 {

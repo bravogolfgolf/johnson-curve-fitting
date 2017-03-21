@@ -6,7 +6,7 @@ using Responders;
 namespace Johnson
 {
     [TestClass]
-    public class UsecaseTest : IResponder
+    public class InitialUsecaseTest : IResponder
     {
         private bool presentMethodCalled = false;
 
@@ -19,7 +19,7 @@ namespace Johnson
         public void ShouldCallInitialReponder()
         {
             InitialUsecase usecase = new InitialUsecase(this);
-            IRequest request = new InitialRequest();
+            Request request = new InitialRequest();
             usecase.Execute(request);
             Assert.IsTrue(presentMethodCalled);
         }

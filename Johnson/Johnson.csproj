@@ -172,22 +172,22 @@
     <Compile Include="InitialRequest.cs" />
     <Compile Include="InitialController.cs" />
     <Compile Include="Histogram.cs" />
-    <Compile Include="JohnsonRibbon.cs">
+    <Compile Include="Ribbon.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="JohnsonRibbon.Designer.cs">
-      <DependentUpon>JohnsonRibbon.cs</DependentUpon>
+    <Compile Include="Ribbon.Designer.cs">
+      <DependentUpon>Ribbon.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Requestors.cs" />
+    <Compile Include="RequestBuilder.cs" />
     <Compile Include="InitialPresenter.cs" />
     <Compile Include="Responders.cs" />
     <Compile Include="InitialUsecase.cs" />
     <Compile Include="InitialView.cs" />
-    <EmbeddedResource Include="JohnsonRibbon.resx">
-      <DependentUpon>JohnsonRibbon.cs</DependentUpon>
+    <EmbeddedResource Include="Ribbon.resx">
+      <DependentUpon>Ribbon.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

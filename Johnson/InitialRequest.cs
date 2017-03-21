@@ -1,7 +1,10 @@
 ﻿namespace Requestors
 {
-    public class InitialRequest : IRequest
+    public class InitialRequest : Request
     {
         public dynamic twoDimensionalArray;
+        public double[] intervals;
+        public double[] frequencies;
+
     }
 }

@@ -5,7 +5,7 @@ using System;
 namespace Johnson
 {
     [TestClass]
-    public class PresenterTest : IView
+    public class InitialPresenterTest : IView
     {
         private bool generateViewCalled = false;
 

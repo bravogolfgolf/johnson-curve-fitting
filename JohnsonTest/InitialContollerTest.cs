@@ -9,7 +9,7 @@ namespace Controllers
     {
         private bool executeMethodCalled = false;
 
-        public void Execute(IRequest request)
+        public void Execute(Request request)
         {
             executeMethodCalled = true;
         }
@@ -17,7 +17,7 @@ namespace Controllers
         [TestMethod]
         public void ShouldCallInitialUsecase()
         {
-            IRequest request = new InitialRequest();
+            Request request = new InitialRequest();
             InitialController controller = new InitialController(request, this);
             controller.Execute();
             Assert.IsTrue(executeMethodCalled);

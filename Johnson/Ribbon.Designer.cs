@@ -1,13 +1,13 @@
 ﻿namespace Johnson
 {
-    partial class JohnsonRibbon : Microsoft.Office.Tools.Ribbon.RibbonBase
+    partial class Ribbon : Microsoft.Office.Tools.Ribbon.RibbonBase
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        public JohnsonRibbon()
+        public Ribbon()
             : base(Globals.Factory.GetRibbonFactory())
         {
             InitializeComponent();
@@ -86,9 +86,9 @@
 
     partial class ThisRibbonCollection
     {
-        internal JohnsonRibbon JohnsonRibbon
+        internal Ribbon JohnsonRibbon
         {
-            get { return this.GetRibbon<JohnsonRibbon>(); }
+            get { return this.GetRibbon<Ribbon>(); }
         }
     }
 }

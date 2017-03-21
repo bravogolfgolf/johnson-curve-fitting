@@ -12,7 +12,7 @@ namespace Usecases
             this.responder = responder;
         }
 
-        public void Execute(IRequest request)
+        public void Execute(Request request)
         {
             responder.Present();
         }

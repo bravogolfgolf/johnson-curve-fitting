@@ -48,11 +48,12 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ContollerTest.cs" />
+    <Compile Include="InitialContollerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PresenterTest.cs" />
+    <Compile Include="InitialPresenterTest.cs" />
     <Compile Include="HistogramTest.cs" />
-    <Compile Include="UsecaseTest.cs" />
+    <Compile Include="InitialUsecaseTest.cs" />
+    <Compile Include="RequestBuilderTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

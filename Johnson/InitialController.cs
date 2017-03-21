@@ -2,12 +2,12 @@
 
 namespace Controllers
 {
-    public class InitialController : IController
+    public class InitialController : Controller
     {
         private IUsecase usecase;
-        private IRequest request;
+        private Request request;
 
-        public InitialController(IRequest request, IUsecase usecase)
+        public InitialController(Request request, IUsecase usecase)
         {
             this.usecase = usecase;
             this.request = request;
