@@ -20,7 +20,6 @@ namespace Requestors
         [TestMethod]
         public void ShouldReturnProperRequest()
         {
-
             double[] intervals = new double[] { 1, 2 };
             double[] frequencies = new double[] { 10, 20 };
             dictionary[0] = intervals;
