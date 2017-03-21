@@ -5,11 +5,11 @@ using Requestors;
 namespace Controllers
 {
     [TestClass]
-    public class InitialContollerTest : IUsecase
+    public class InitialContollerTest : Usecase
     {
         private bool executeMethodCalled = false;
 
-        public void Execute(Request request)
+        public override void Execute(Request request)
         {
             executeMethodCalled = true;
         }

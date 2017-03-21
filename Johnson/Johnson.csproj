@@ -169,6 +169,7 @@
     can be found.
   -->
   <ItemGroup>
+    <Compile Include="ControllerFactory.cs" />
     <Compile Include="InitialRequest.cs" />
     <Compile Include="InitialController.cs" />
     <Compile Include="Histogram.cs" />

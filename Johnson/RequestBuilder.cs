@@ -3,11 +3,6 @@ using System.Collections;
 
 namespace Requestors
 {
-    public class Controller
-    {
-        void Execute() {; }
-    }
-
     public class Request
     {
     }
@@ -30,8 +25,8 @@ namespace Requestors
         }
     }
 
-    public interface IUsecase
+    public class Usecase
     {
-        void Execute(Request request);
+        public virtual void Execute(Request request) {; }
     }
 }

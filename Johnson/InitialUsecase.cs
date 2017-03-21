@@ -3,7 +3,7 @@ using Responders;
 
 namespace Usecases
 {
-    public class InitialUsecase : IUsecase
+    public class InitialUsecase : Usecase
     {
         private IResponder responder;
 
@@ -12,7 +12,7 @@ namespace Usecases
             this.responder = responder;
         }
 
-        public void Execute(Request request)
+        public override void Execute(Request request)
         {
             responder.Present();
         }

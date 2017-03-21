@@ -4,16 +4,16 @@ namespace Controllers
 {
     public class InitialController : Controller
     {
-        private IUsecase usecase;
+        private Usecase usecase;
         private Request request;
 
-        public InitialController(Request request, IUsecase usecase)
+        public InitialController(Request request, Usecase usecase)
         {
             this.usecase = usecase;
             this.request = request;
         }
 
-        public void Execute()
+        public override void Execute()
         {
             usecase.Execute(request);
         }

@@ -7,11 +7,20 @@ namespace Requestors
     [TestClass]
     public class RequestBuilderTest
     {
+        private RequestBuilder builder;
+        private IDictionary dictionary;
+
+        [TestInitialize]
+        public void SetUp()
+        {
+            builder = new RequestBuilder();
+            dictionary = new Dictionary<int, object>();
+        }
+
         [TestMethod]
         public void ShouldReturnProperRequest()
         {
-            RequestBuilder builder = new RequestBuilder();
-            IDictionary dictionary = new Dictionary<int, object>();
+
             double[] intervals = new double[] { 1, 2 };
             double[] frequencies = new double[] { 10, 20 };
             dictionary[0] = intervals;
