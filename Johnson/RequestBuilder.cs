@@ -5,6 +5,9 @@ namespace Requestors
 {
     public class Request
     {
+        private bool isValid = false;
+
+        public bool IsValid { get => isValid; set => isValid = value; }
     }
 
     public class RequestBuilder
@@ -16,11 +19,12 @@ namespace Requestors
                 InitialRequest request = new InitialRequest();
                 request.intervals = (double[])dictionary[0];
                 request.frequencies = (double[])dictionary[1];
+                request.IsValid = true;
                 return request;
             }
             else
             {
-                return null;
+                return new Request();
             }
         }
     }
