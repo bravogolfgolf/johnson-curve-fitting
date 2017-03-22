@@ -12,9 +12,14 @@ namespace Johnson
     {
         public void GenerateView()
         {
+            AddWorksheet();
+            EnterLabels();
+        }
+
+        private static void AddWorksheet()
+        {
             Excel.Worksheet lastWorksheet = getLastWorksheetInWorkbook();
             Excel.Worksheet worksheet = AddNewWorksheetAfter(lastWorksheet);
-            EnterLabels();
         }
 
         private static Excel.Worksheet getLastWorksheetInWorkbook()
