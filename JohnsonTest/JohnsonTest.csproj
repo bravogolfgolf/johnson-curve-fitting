@@ -54,6 +54,8 @@
     <Compile Include="HistogramTest.cs" />
     <Compile Include="InitialUsecaseTest.cs" />
     <Compile Include="RequestBuilderTest.cs" />
+    <Compile Include="ControllerFactoryTest.cs" />
+    <Compile Include="UsecaseFactoryTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

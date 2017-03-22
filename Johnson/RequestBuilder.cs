@@ -1,31 +1,25 @@
 ﻿using System;
-using System.Collections;
+using System.Collections.Generic;
 
 namespace Requestors
 {
     public class Request
     {
-        private bool isValid = false;
-
-        public bool IsValid { get => isValid; set => isValid = value; }
     }
 
     public class RequestBuilder
     {
-        public Request Create(string requestType, IDictionary dictionary)
+        public virtual Request Create(string type, IDictionary<int, object> dictionary)
         {
-            if (requestType.Equals("Initial"))
+            if (type.Equals("Initial"))
             {
                 InitialRequest request = new InitialRequest();
                 request.intervals = (double[])dictionary[0];
                 request.frequencies = (double[])dictionary[1];
-                request.IsValid = true;
                 return request;
             }
             else
-            {
-                return new Request();
-            }
+                return null;
         }
     }
 

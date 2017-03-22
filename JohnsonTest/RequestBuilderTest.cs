@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace Requestors
@@ -7,13 +6,12 @@ namespace Requestors
     [TestClass]
     public class RequestBuilderTest
     {
-        private RequestBuilder builder;
-        private IDictionary dictionary;
+        private RequestBuilder builder = new RequestBuilder();
+        private IDictionary<int, object> dictionary;
 
         [TestInitialize]
         public void SetUp()
         {
-            builder = new RequestBuilder();
             dictionary = new Dictionary<int, object>();
         }
 

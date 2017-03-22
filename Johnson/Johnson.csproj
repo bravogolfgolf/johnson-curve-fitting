@@ -187,6 +187,7 @@
     <Compile Include="Responders.cs" />
     <Compile Include="InitialUsecase.cs" />
     <Compile Include="InitialView.cs" />
+    <Compile Include="UsecaseFactory.cs" />
     <EmbeddedResource Include="Ribbon.resx">
       <DependentUpon>Ribbon.cs</DependentUpon>
     </EmbeddedResource>

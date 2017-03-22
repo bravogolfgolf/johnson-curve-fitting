@@ -1,17 +1,13 @@
 ﻿using Microsoft.Office.Tools.Ribbon;
 using Excel = Microsoft.Office.Interop.Excel;
-using Controllers;
 using Requestors;
-using System.Collections;
 using System.Collections.Generic;
-using Microsoft.CSharp.RuntimeBinder;
-using System.Windows.Forms;
 
 namespace Johnson
 {
     public partial class Ribbon
     {
-        RequestBuilder builder = new RequestBuilder();
+        ControllerFactory factory = new ControllerFactory(new RequestBuilder(), new UsecaseFactory());
 
         private void JohnsonRibbon_Load(object sender, RibbonUIEventArgs e)
         {
@@ -22,9 +18,8 @@ namespace Johnson
             dynamic input = GetUserInput();
             if (input is Excel.Range)
             {
-                Request request = TryProcessRangeIntoRequest(input);
-                if (request.IsValid)
-                    new InitialController(request, new Usecases.InitialUsecase(new Johnson.InitialPresenter(new InitialView()))).Execute();
+                IDictionary<int, object> dictionary = ConvertRangeToArraysAndAddToDictionary(input);
+                factory.Create("Initial", dictionary, new InitialPresenter(new InitialView())).Execute();
             }
         }
 
@@ -37,24 +32,9 @@ namespace Johnson
             return input;
         }
 
-        private Request TryProcessRangeIntoRequest(dynamic range)
+        private IDictionary<int, object> ConvertRangeToArraysAndAddToDictionary(dynamic range)
         {
-            IDictionary dictionary = new Dictionary<int, object>();
-            try
-            {
-                dictionary = ConvertRangeToArraysAndAddToDictionary(range);
-            }
-            catch (RuntimeBinderException e)
-            {
-                MessageBox.Show("Range must contain values for each cell", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return new Request();
-            }
-            return builder.Create("Initial", dictionary);
-        }
-
-        private IDictionary ConvertRangeToArraysAndAddToDictionary(dynamic range)
-        {
-            IDictionary dictionary = new Dictionary<int, object>();
+            IDictionary<int, object> dictionary = new Dictionary<int, object>();
             int size = (int)range.Count / 2;
             double[] intervals = new double[size];
             double[] frequencies = new double[size];
