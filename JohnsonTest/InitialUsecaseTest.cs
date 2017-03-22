@@ -2,15 +2,16 @@
 using Requestors;
 using Usecases;
 using Responders;
+using System;
 
 namespace Johnson
 {
     [TestClass]
-    public class InitialUsecaseTest : IResponder
+    public class InitialUsecaseTest : IInitialResponder
     {
         private bool presentMethodCalled = false;
-
-        public void Present()
+        
+        public void Present(IInitialResponse response)
         {
             presentMethodCalled = true;
         }

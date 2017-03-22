@@ -30,7 +30,7 @@ namespace Requestors
 
     public class UsecaseFactoryStub : UsecaseFactory
     {
-        public override Usecase Create(string type, IResponder responser)
+        public override Usecase Create(string type, IInitialResponder responser)
         {
             return new InitialUsecase(new InitialPresenterDummy());
         }

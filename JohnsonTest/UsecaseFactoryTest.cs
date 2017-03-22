@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Responders;
 using Usecases;
 
@@ -10,16 +11,16 @@ namespace Requestors
         [TestMethod]
         public void ShouldReturnProperUsecase()
         {
-            IResponder responser = new InitialPresenterDummy();
+            IInitialResponder responser = new InitialPresenterDummy();
             UsecaseFactory factory = new UsecaseFactory();
             Usecase usecase = factory.Create("Initial", responser);
             Assert.IsTrue(usecase is InitialUsecase);
         }
     }
 
-    public class InitialPresenterDummy : IResponder
+    public class InitialPresenterDummy : IInitialResponder
     {
-        public void Present()
+        public void Present(IInitialResponse response)
         {
             ;
         }

@@ -170,9 +170,11 @@
   -->
   <ItemGroup>
     <Compile Include="ControllerFactory.cs" />
+    <Compile Include="IInitialResponse.cs" />
     <Compile Include="InitialRequest.cs" />
     <Compile Include="InitialController.cs" />
     <Compile Include="Histogram.cs" />
+    <Compile Include="InitialResponse.cs" />
     <Compile Include="Ribbon.cs">
       <SubType>Component</SubType>
     </Compile>

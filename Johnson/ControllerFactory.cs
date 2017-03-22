@@ -21,7 +21,7 @@ namespace Requestors
             this.factory = factory;
         }
 
-        public Controller Create(string type, IDictionary<int, object> dictionary, IResponder responder)
+        public Controller Create(string type, IDictionary<int, object> dictionary, IInitialResponder responder)
         {
             if (type.Equals("Initial"))
             {

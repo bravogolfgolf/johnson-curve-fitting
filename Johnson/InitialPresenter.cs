@@ -1,8 +1,10 @@
-﻿using Responders;
+﻿using System;
+using Responders;
+using Usecases;
 
 namespace Johnson
 {
-    public class InitialPresenter : IResponder
+    public class InitialPresenter : IInitialResponder
     {
         private IView view;
 
@@ -11,7 +13,7 @@ namespace Johnson
             this.view = view;
         }
 
-        public void Present()
+        public void Present(IInitialResponse response)
         {
             view.GenerateView();
         }

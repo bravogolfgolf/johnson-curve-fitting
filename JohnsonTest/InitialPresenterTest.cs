@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Johnson;
-using System;
+using Responders;
+using Usecases;
 
 namespace Johnson
 {
@@ -17,8 +17,9 @@ namespace Johnson
         [TestMethod]
         public void ShouldCallGenerateView()
         {
+            IInitialResponse response = new InitialResponse();
             InitialPresenter presenter = new InitialPresenter(this);
-            presenter.Present();
+            presenter.Present(response);
             Assert.IsTrue(generateViewCalled);
         }
     }
