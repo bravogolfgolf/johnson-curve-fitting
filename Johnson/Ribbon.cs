@@ -7,11 +7,9 @@ namespace Johnson
 {
     public partial class Ribbon
     {
-        ControllerFactory factory = new ControllerFactory(new RequestBuilder(), new UsecaseFactory());
+        ControllerFactory factory = new ControllerFactory();
 
-        private void JohnsonRibbon_Load(object sender, RibbonUIEventArgs e)
-        {
-        }
+        private void JohnsonRibbon_Load(object sender, RibbonUIEventArgs e) { }
 
         private void OnInitalButtonClick(object sender, RibbonControlEventArgs e)
         {

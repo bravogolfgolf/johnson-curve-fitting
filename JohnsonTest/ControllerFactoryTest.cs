@@ -1,38 +1,31 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using Controllers;
-using Usecases;
-using Responders;
+using Johnson;
 
 namespace Requestors
 {
     [TestClass]
     public class ControllerFactoryTest
     {
-        private ControllerFactory factory = new ControllerFactory(new RequestBuilderStub(),new UsecaseFactoryStub());
-        private IDictionary<int, object> dictionary = new Dictionary<int, object>();
+        private ControllerFactory factory = new ControllerFactory();
+        private IDictionary<int, object> dictionary;
+
+        [TestInitialize]
+        public void SetUp()
+        {
+            dictionary = new Dictionary<int, object>();
+        }
 
         [TestMethod]
         public void ShouldReturnProperController()
         {
-            Controller controller = factory.Create("Initial", dictionary, new InitialPresenterDummy());
+            double[] intervals = new double[] { 1, 2 };
+            double[] frequencies = new double[] { 10, 20 };
+            dictionary[0] = intervals;
+            dictionary[1] = frequencies;
+            Controller controller = factory.Create("Initial", dictionary, new InitialPresenter(new InitialView()));
             Assert.IsTrue(controller is InitialController);
-        }
-    }
-
-    public class RequestBuilderStub : RequestBuilder
-    {
-        public override Request Create(string type, IDictionary<int, object> dictionary)
-        {
-            return new Request();
-        }
-    }
-
-    public class UsecaseFactoryStub : UsecaseFactory
-    {
-        public override Usecase Create(string type, IInitialResponder responser)
-        {
-            return new InitialUsecase(new InitialPresenterDummy());
         }
     }
 }

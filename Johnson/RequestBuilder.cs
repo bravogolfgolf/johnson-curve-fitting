@@ -2,9 +2,7 @@
 
 namespace Requestors
 {
-    public class Request
-    {
-    }
+    public class Request { }
 
     public class RequestBuilder
     {

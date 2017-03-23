@@ -1,31 +1,22 @@
-﻿using Responders;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System;
 
 namespace Requestors
 {
-    public class Controller
-    {
-        public virtual void Execute() {; }
-    }
+    public class Controller { public virtual void Execute() { } }
 
     public class ControllerFactory
     {
-        private RequestBuilder builder;
-        private UsecaseFactory factory;
+        private RequestBuilder builder = new RequestBuilder();
+        private UsecaseFactory factory = new UsecaseFactory();
 
-        public ControllerFactory(RequestBuilder builder, UsecaseFactory factory)
-        {
-            this.builder = builder;
-            this.factory = factory;
-        }
-
-        public Controller Create(string type, IDictionary<int, object> dictionary, IResponder responder)
+        public Controller Create(string type, IDictionary<int, object> dictionary, object responder)
         {
             if (type.Equals("Initial"))
             {
                 Request request = builder.Create(type, dictionary);
-                Usecase usecase = factory.Create(type, (IInitialResponder) responder);
-                return new Controllers.InitialController(request, usecase, (IInitialResponder) responder);
+                Usecase usecase = factory.Create(type, responder);
+                return (Controller)Activator.CreateInstance(Type.GetType("Controllers.InitialController"), new object[] { request, usecase, responder });
             }
             else
                 return null;

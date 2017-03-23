@@ -1,14 +1,8 @@
 ﻿namespace Responders
 {
-    public interface IResponder
-    {
-        void GernerateView();
-    }
+    public interface IResponder { void GernerateView(); }
 
-    public interface IInitialResponder : IResponder
-    {
-        void Present(IInitialResponse response);
-    }
+    public interface IInitialResponder : IResponder { void Present(IInitialResponse response); }
 
     public interface IInitialResponse
     {

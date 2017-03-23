@@ -7,9 +7,9 @@ namespace Controllers
     {
         private Usecase usecase;
         private Request request;
-        private IInitialResponder responder;
+        private IResponder responder;
 
-        public InitialController(Request request, Usecase usecase, IInitialResponder responder)
+        public InitialController(Request request, Usecase usecase, IResponder responder)
         {
             this.usecase = usecase;
             this.request = request;
