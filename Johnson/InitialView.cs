@@ -1,5 +1,4 @@
-﻿using System;
-using Excel = Microsoft.Office.Interop.Excel;
+﻿using Excel = Microsoft.Office.Interop.Excel;
 
 namespace Johnson
 {
@@ -15,6 +14,7 @@ namespace Johnson
             AddWorksheet();
             EnterLabels();
             EnterHistogramProperties((InitialViewModel)viewModel);
+            FormatSheet();
         }
 
         private static void AddWorksheet()
@@ -78,6 +78,46 @@ namespace Johnson
             Globals.ThisAddIn.Application.ActiveSheet.Range("C1").Offset(15).Value = viewModel.beta1;
             Globals.ThisAddIn.Application.ActiveSheet.Range("C1").Offset(16).Value = viewModel.beta2;
             Globals.ThisAddIn.Application.ActiveSheet.Range("C1").Offset(17).Value = viewModel.johnsonType;
+        }
+
+        private void FormatSheet()
+        {
+            Excel.Range selection = Globals.ThisAddIn.Application.ActiveSheet.Cells;
+            selection.Style = "Comma";
+            selection.NumberFormat = "_(* #,##0.0000_);_(* -#,##0.0000_);_(@_)";
+            selection.ColumnWidth = 24;
+
+            selection = Globals.ThisAddIn.Application.ActiveSheet.Columns("A");
+            selection.ColumnWidth = 5;
+
+
+            selection = Globals.ThisAddIn.Application.ActiveSheet.Columns("B");
+            selection.ColumnWidth = 19;
+
+
+            selection = Globals.ThisAddIn.Application.ActiveSheet.Columns("A:B");
+            selection.HorizontalAlignment = Excel.Constants.xlLeft;
+            selection.VerticalAlignment = Excel.Constants.xlBottom;
+            selection.WrapText = false;
+            selection.Orientation = 0;
+            selection.AddIndent = false;
+            selection.IndentLevel = 0;
+            selection.ShrinkToFit = false;
+            selection.ReadingOrder = (int)Excel.Constants.xlContext;
+            selection.MergeCells = false;
+
+            selection = Globals.ThisAddIn.Application.ActiveSheet.Columns("C:D");
+            selection.HorizontalAlignment = Excel.Constants.xlRight;
+            selection.VerticalAlignment = Excel.Constants.xlBottom;
+            selection.WrapText = false;
+            selection.Orientation = 0;
+            selection.AddIndent = false;
+            selection.IndentLevel = 0;
+            selection.ShrinkToFit = false;
+            selection.ReadingOrder = (int)Excel.Constants.xlContext;
+            selection.MergeCells = false;
+
+            selection = Globals.ThisAddIn.Application.ActiveSheet.Range("A1");
         }
     }
 }
