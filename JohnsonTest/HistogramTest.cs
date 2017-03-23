@@ -49,7 +49,7 @@ namespace Entities
         [TestMethod]
         public void ShouldReturnFourthMomentAboutOrigin()
         {
-            const double DELTA = .0625;
+            const double DELTA = .1;
             Assert.AreEqual(429308429921875.0, histogram.FourthMomentAboutOrigin(), DELTA);
         }
 
@@ -74,36 +74,37 @@ namespace Entities
         [TestMethod]
         public void ShouldReturnB1()
         {
-            const double DELTA = .0001;
+            const double DELTA = .001;
             Assert.AreEqual(0.460028664027421, histogram.B1(), DELTA);
         }
 
-        [TestMethod]
+        [
+            TestMethod]
         public void ShouldReturnB2()
         {
-            const double DELTA = .0001;
+            const double DELTA = .001;
             Assert.AreEqual(4.25802432972137, histogram.B2(), DELTA);
         }
 
         [TestMethod]
         public void ShouldReturnW()
         {
-            const double DELTA = .1;
+            const double DELTA = .001;
             Assert.AreEqual(1.04946936586057, histogram.W(), DELTA);
         }
 
         [TestMethod]
         public void ShouldReturnBeta1()
         {
-            const double DELTA = 1;
+            const double DELTA = .001;
             Assert.AreEqual(0.460028664027421, histogram.Beta1(), DELTA);
         }
 
         [TestMethod]
         public void ShouldReturnBeta2()
         {
-            const double DELTA = .9;
-            Assert.AreEqual(3.8290, histogram.Beta2(), DELTA);
+            const double DELTA = .001;
+            Assert.AreEqual(3.828950489, histogram.Beta2(), DELTA);
         }
 
         [TestMethod]

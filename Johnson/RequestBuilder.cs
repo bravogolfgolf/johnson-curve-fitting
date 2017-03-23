@@ -22,9 +22,4 @@ namespace Requestors
                 return null;
         }
     }
-
-    public class Usecase
-    {
-        public virtual void Execute(Request request) {; }
-    }
 }

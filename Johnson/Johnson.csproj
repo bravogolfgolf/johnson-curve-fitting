@@ -175,6 +175,7 @@
     <Compile Include="InitialController.cs" />
     <Compile Include="Histogram.cs" />
     <Compile Include="InitialResponse.cs" />
+    <Compile Include="InitialViewModel.cs" />
     <Compile Include="Ribbon.cs">
       <SubType>Component</SubType>
     </Compile>

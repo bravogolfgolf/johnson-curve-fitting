@@ -21,13 +21,13 @@ namespace Requestors
             this.factory = factory;
         }
 
-        public Controller Create(string type, IDictionary<int, object> dictionary, IInitialResponder responder)
+        public Controller Create(string type, IDictionary<int, object> dictionary, IResponder responder)
         {
             if (type.Equals("Initial"))
             {
                 Request request = builder.Create(type, dictionary);
-                Usecase usecase = factory.Create(type, responder);
-                return new Controllers.InitialController(request, usecase);
+                Usecase usecase = factory.Create(type, (IInitialResponder) responder);
+                return new Controllers.InitialController(request, usecase, (IInitialResponder) responder);
             }
             else
                 return null;

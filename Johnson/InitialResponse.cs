@@ -1,11 +1,9 @@
 ﻿using Responders;
 
-namespace Usecases    
+namespace Usecases
 {
     public class InitialResponse : IInitialResponse
     {
-        private double[] intervals;
-        private double[] frequencies;
         private double mean1stMomment;
         private double mean2ndtMomment;
         private double mean3rdMomment;
@@ -18,13 +16,8 @@ namespace Usecases
         private double w;
         private double beta1;
         private double beta2;
-        private double leastSquare;
-        private string pearsonType;
         private string johnsonType;
-        private string shape;
 
-        public double[] Intervals { get => intervals; set => intervals = value; }
-        public double[] Frequencies { get => frequencies; set => frequencies = value; }
         public double Mean1stMomment { get => mean1stMomment; set => mean1stMomment = value; }
         public double Mean2ndtMomment { get => mean2ndtMomment; set => mean2ndtMomment = value; }
         public double Mean3rdMomment { get => mean3rdMomment; set => mean3rdMomment = value; }
@@ -37,9 +30,6 @@ namespace Usecases
         public double W { get => w; set => w = value; }
         public double Beta1 { get => beta1; set => beta1 = value; }
         public double Beta2 { get => beta2; set => beta2 = value; }
-        public double LeastSquare { get => leastSquare; set => leastSquare = value; }
-        public string PearsonType { get => pearsonType; set => pearsonType = value; }
         public string JohnsonType { get => johnsonType; set => johnsonType = value; }
-        public string Shape { get => shape; set => shape = value; }
     }
 }

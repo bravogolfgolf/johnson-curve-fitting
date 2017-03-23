@@ -20,6 +20,11 @@ namespace Requestors
 
     public class InitialPresenterDummy : IInitialResponder
     {
+        public void GernerateView()
+        {
+            ;
+        }
+
         public void Present(IInitialResponse response)
         {
             ;

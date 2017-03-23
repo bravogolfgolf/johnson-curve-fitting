@@ -36,7 +36,7 @@ namespace Entities
 
         public double B2() { return FourthMomentAboutMean() / System.Math.Pow(SecondMomentAboutMean(), 2); }
 
-        public double W() { return Math.Pow(1 + 0.5 * B1() + Math.Sqrt(B1() * (1 + 0.25 * B1())), 1 / 3) + Math.Pow(1 + 0.5 * B1() - Math.Sqrt(B1() * (1 + 0.25 * B1())), 1 / 3) - 1; }
+        public double W() { return (Math.Pow((1 + 0.5 * B1() + Math.Sqrt(B1() * (1 + 0.25 * B1()))), .333333) + Math.Pow((1 + 0.5 * B1() - Math.Sqrt(B1() * (1 + 0.25 * B1()))), .333333) - 1); }
 
         public double Beta1() { return (W() - 1) * Math.Pow(W() + 2, 2); }
 

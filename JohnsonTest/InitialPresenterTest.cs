@@ -1,26 +1,27 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Responders;
-using Usecases;
 
 namespace Johnson
 {
     [TestClass]
-    public class InitialPresenterTest : IView
+    public class InitialPresenterTest
     {
-        private bool generateViewCalled = false;
-
-        public void GenerateView()
-        {
-            generateViewCalled = true;
-        }
-
         [TestMethod]
         public void ShouldCallGenerateView()
         {
-            IInitialResponse response = new InitialResponse();
-            InitialPresenter presenter = new InitialPresenter(this);
-            presenter.Present(response);
-            Assert.IsTrue(generateViewCalled);
+            InitialViewDummy view = new InitialViewDummy();
+            InitialPresenter presenter = new InitialPresenter(view);
+            presenter.GernerateView();
+            Assert.IsTrue(view.generateViewCalled);
+        }
+    }
+
+    public class InitialViewDummy : IView
+    {
+        public bool generateViewCalled = false;
+
+        public void GenerateView(object viewModel)
+        {
+            generateViewCalled = true;
         }
     }
 }
