@@ -11,10 +11,17 @@ namespace Johnson
     {
         public void GenerateView(object viewModel)
         {
+            ScreenShouldUpdate(false);
             AddWorksheet();
             EnterLabels();
             EnterHistogramProperties((InitialViewModel)viewModel);
             FormatSheet();
+            ScreenShouldUpdate(true);
+        }
+
+        private static void ScreenShouldUpdate(bool setting)
+        {
+            Globals.ThisAddIn.Application.ScreenUpdating = setting;
         }
 
         private static void AddWorksheet()
