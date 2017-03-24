@@ -2,10 +2,7 @@
 
 namespace Johnson
 {
-    public interface IView
-    {
-        void GenerateView(object viewModel);
-    }
+    public interface IView { void GenerateView(object viewModel); }
 
     public class InitialView : IView
     {
@@ -19,25 +16,25 @@ namespace Johnson
             ScreenShouldUpdate(true);
         }
 
-        private static void ScreenShouldUpdate(bool setting)
+        private void ScreenShouldUpdate(bool setting)
         {
             Globals.ThisAddIn.Application.ScreenUpdating = setting;
         }
 
-        private static void AddWorksheet()
+        private void AddWorksheet()
         {
             Excel.Worksheet lastWorksheet = getLastWorksheetInWorkbook();
             Excel.Worksheet worksheet = AddNewWorksheetAfter(lastWorksheet);
         }
 
-        private static Excel.Worksheet getLastWorksheetInWorkbook()
+        private Excel.Worksheet getLastWorksheetInWorkbook()
         {
             int count = Globals.ThisAddIn.Application.Sheets.Count;
             Excel.Worksheet lastWorksheet = Globals.ThisAddIn.Application.ActiveWorkbook.Sheets[count];
             return lastWorksheet;
         }
 
-        private static Excel.Worksheet AddNewWorksheetAfter(Excel.Worksheet lastWorksheet)
+        private Excel.Worksheet AddNewWorksheetAfter(Excel.Worksheet lastWorksheet)
         {
             return Globals.ThisAddIn.Application.Worksheets.Add(After: lastWorksheet);
         }
@@ -97,32 +94,14 @@ namespace Johnson
             selection = Globals.ThisAddIn.Application.ActiveSheet.Columns("A");
             selection.ColumnWidth = 5;
 
-
             selection = Globals.ThisAddIn.Application.ActiveSheet.Columns("B");
             selection.ColumnWidth = 19;
 
-
             selection = Globals.ThisAddIn.Application.ActiveSheet.Columns("A:B");
             selection.HorizontalAlignment = Excel.Constants.xlLeft;
-            selection.VerticalAlignment = Excel.Constants.xlBottom;
-            selection.WrapText = false;
-            selection.Orientation = 0;
-            selection.AddIndent = false;
-            selection.IndentLevel = 0;
-            selection.ShrinkToFit = false;
-            selection.ReadingOrder = (int)Excel.Constants.xlContext;
-            selection.MergeCells = false;
 
             selection = Globals.ThisAddIn.Application.ActiveSheet.Columns("C:D");
             selection.HorizontalAlignment = Excel.Constants.xlRight;
-            selection.VerticalAlignment = Excel.Constants.xlBottom;
-            selection.WrapText = false;
-            selection.Orientation = 0;
-            selection.AddIndent = false;
-            selection.IndentLevel = 0;
-            selection.ShrinkToFit = false;
-            selection.ReadingOrder = (int)Excel.Constants.xlContext;
-            selection.MergeCells = false;
 
             selection = Globals.ThisAddIn.Application.ActiveSheet.Range("A1");
         }
