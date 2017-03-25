@@ -16,15 +16,15 @@ namespace Entities
 
         public int NumberOfEntries() { return frequencies.Length; }
 
-        public double N() { return frequencies.Sum(); }
+        public double N { get { return frequencies.Sum(); } }
 
-        public double FirstMomentAboutOrigin() { return intervals.Zip(frequencies, (i, f) => i * f).Sum() / N(); }
+        public double FirstMomentAboutOrigin() { return DistributionProperties.FirstMomentAboutOrigin(intervals, frequencies, N); }
 
-        public double SecondMomentAboutOrigin() { return intervals.Zip(frequencies, (i, f) => i * i * f).Sum() / N(); }
+        public double SecondMomentAboutOrigin() { return intervals.Zip(frequencies, (i, f) => i * i * f).Sum() / N; }
 
-        public double ThirdMomentAboutOrigin() { return intervals.Zip(frequencies, (i, f) => i * i * i * f).Sum() / N(); }
+        public double ThirdMomentAboutOrigin() { return intervals.Zip(frequencies, (i, f) => i * i * i * f).Sum() / N; }
 
-        public double FourthMomentAboutOrigin() { return intervals.Zip(frequencies, (i, f) => i * i * i * i * f).Sum() / N(); }
+        public double FourthMomentAboutOrigin() { return intervals.Zip(frequencies, (i, f) => i * i * i * i * f).Sum() / N; }
 
         public double SecondMomentAboutMean() { return SecondMomentAboutOrigin() - System.Math.Pow(FirstMomentAboutOrigin(), 2); }
 

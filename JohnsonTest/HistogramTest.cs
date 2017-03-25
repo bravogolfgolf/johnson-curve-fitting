@@ -25,7 +25,7 @@ namespace Entities
         [TestMethod]
         public void ShouldReturnSumOfEntriesOfFrequencies()
         {
-            Assert.AreEqual(200, histogram.N());
+            Assert.AreEqual(200, histogram.N);
         }
 
         [TestMethod]

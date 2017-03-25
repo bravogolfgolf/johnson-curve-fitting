@@ -170,6 +170,7 @@
   -->
   <ItemGroup>
     <Compile Include="ControllerFactory.cs" />
+    <Compile Include="DistributionProperties.cs" />
     <Compile Include="InitialRequest.cs" />
     <Compile Include="InitialController.cs" />
     <Compile Include="Histogram.cs" />
@@ -189,6 +190,8 @@
     <Compile Include="Responders.cs" />
     <Compile Include="InitialUsecase.cs" />
     <Compile Include="InitialView.cs" />
+    <Compile Include="Solution.cs" />
+    <Compile Include="SoultionSB.cs" />
     <Compile Include="UsecaseFactory.cs" />
     <EmbeddedResource Include="Ribbon.resx">
       <DependentUpon>Ribbon.cs</DependentUpon>
