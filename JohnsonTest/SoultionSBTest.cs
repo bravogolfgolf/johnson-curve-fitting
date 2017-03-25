@@ -76,5 +76,68 @@ namespace Entities
                 Assert.AreEqual(actuals[i], graduationSeries[i], DELTA);
             }
         }
+
+        [TestMethod]
+        public void ShouldReturnFirstMomentAboutOrigin()
+        {
+            const double DELTA = .001;
+            Assert.AreEqual(0.350892728, solution.FirstMomentAboutOrigin, DELTA);
+        }
+
+        [TestMethod]
+        public void ShouldReturnSecondMomentAboutOrigin()
+        {
+            const double DELTA = .001;
+            Assert.AreEqual(0.14360458, solution.SecondMomentAboutOrigin, DELTA);
+        }
+
+        [TestMethod]
+        public void ShouldReturnThirdMomentAboutOrigin()
+        {
+            const double DELTA = .001;
+            Assert.AreEqual(0.066201943, solution.ThirdMomentAboutOrigin, DELTA);
+        }
+
+        [TestMethod]
+        public void ShouldReturnFourthMomentAboutOrigin()
+        {
+            const double DELTA = .001;
+            Assert.AreEqual(0.033461382, solution.FourthMomentAboutOrigin, DELTA);
+        }
+
+        [TestMethod]
+        public void ShouldReturnSecondMomentOfAboutMean()
+        {
+            const double DELTA = .001;
+            Assert.AreEqual(0.020478873, solution.SecondMomentAboutMean, DELTA);
+        }
+
+        [TestMethod]
+        public void ShouldReturnThirdMomentOfAboutMean()
+        {
+            const double DELTA = .001;
+            Assert.AreEqual(0.001440364, solution.ThirdMomentAboutMean, DELTA);
+        }
+
+        [TestMethod]
+        public void ShouldReturnFourthMomentOfAboutMean()
+        {
+            const double DELTA = .001;
+            Assert.AreEqual(0.001150935, solution.FourthMomentAboutMean, DELTA);
+        }
+
+        [TestMethod]
+        public void ShouldReturnB1()
+        {
+            const double DELTA = .001;
+            Assert.AreEqual(0.24156084, solution.B1, DELTA);
+        }
+
+        [TestMethod]
+        public void ShouldReturnB2()
+        {
+            const double DELTA = .001;
+            Assert.AreEqual(2.744344162, solution.B2, DELTA);
+        }
     }
 }

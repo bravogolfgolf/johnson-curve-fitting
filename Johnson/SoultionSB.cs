@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 
 namespace Entities
 {
@@ -68,7 +67,6 @@ namespace Entities
             }
         }
 
-
         private double DOpt()
         {
             return 1 / SF();
@@ -84,7 +82,7 @@ namespace Entities
             return Math.Sign(histogram.ThirdMomentAboutMean) * Math.Abs(-FirstMomentAboutOrigin(FunctionOfYSeries, histogram.Frequencies, histogram.N) / SF());
         }
 
-        public double[] CumNormalSeries
+        public override double[] CumNormalSeries
         {
             get
             {
@@ -115,7 +113,7 @@ namespace Entities
             double t = 1 / (1 + p * x);
             return 1 - ((((((a5 * t + a4) * t) + a3) * t + a2) * t) + a1) * t * Math.Exp(-1 * Math.Pow(x, 2));
         }
-        public double[] GraduationSeries
+        public override double[] GraduationSeries
         {
             get
             {
@@ -128,5 +126,32 @@ namespace Entities
                 return graduationSeries;
             }
         }
+
+        public override double FirstMomentAboutOrigin
+        { get { return FirstMomentAboutOrigin(YSeries, GraduationSeries, histogram.N); } }
+
+        public override double SecondMomentAboutOrigin
+        { get { return SecondMomentAboutOrigin(YSeries, GraduationSeries, histogram.N); } }
+
+        public override double ThirdMomentAboutOrigin
+        { get { return ThirdMomentAboutOrigin(YSeries, GraduationSeries, histogram.N); } }
+
+        public override double FourthMomentAboutOrigin
+        { get { return FourthMomentAboutOrigin(YSeries, GraduationSeries, histogram.N); } }
+
+        public override double SecondMomentAboutMean
+        { get { return SecondMomentAboutMean(FirstMomentAboutOrigin, SecondMomentAboutOrigin); } }
+
+        public override double ThirdMomentAboutMean
+        { get { return ThirdMomentAboutMean(FirstMomentAboutOrigin, SecondMomentAboutOrigin, ThirdMomentAboutOrigin); } }
+
+        public override double FourthMomentAboutMean
+        { get { return FourthMomentAboutMean(FirstMomentAboutOrigin, SecondMomentAboutOrigin, ThirdMomentAboutOrigin, FourthMomentAboutOrigin); } }
+
+        public override double B1
+        { get { return B1(SecondMomentAboutMean, ThirdMomentAboutMean); } }
+
+        public override double B2
+        { get { return B2(SecondMomentAboutMean, FourthMomentAboutMean); } }
     }
 }
