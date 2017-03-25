@@ -25,19 +25,19 @@ namespace Usecases
         private IInitialResponse CreateResponse()
         {
             IInitialResponse response = new InitialResponse();
-            response.Mean1stMomment = histogram.FirstMomentAboutOrigin();
-            response.Mean2ndtMomment = histogram.SecondMomentAboutOrigin();
-            response.Mean3rdMomment = histogram.ThirdMomentAboutOrigin();
-            response.Mean4thMomment = histogram.FourthMomentAboutOrigin();
-            response.N2 = histogram.SecondMomentAboutMean();
-            response.N3 = histogram.ThirdMomentAboutMean();
-            response.N4 = histogram.FourthMomentAboutMean();
-            response.B1 = histogram.B1();
-            response.B2 = histogram.B2();
-            response.W = histogram.W();
-            response.Beta1 = histogram.Beta1();
-            response.Beta2 = histogram.Beta2();
-            response.JohnsonType = histogram.JohnsonType();
+            response.Mean1stMomment = histogram.FirstMomentAboutOrigin;
+            response.Mean2ndtMomment = histogram.SecondMomentAboutOrigin;
+            response.Mean3rdMomment = histogram.ThirdMomentAboutOrigin;
+            response.Mean4thMomment = histogram.FourthMomentAboutOrigin;
+            response.N2 = histogram.SecondMomentAboutMean;
+            response.N3 = histogram.ThirdMomentAboutMean;
+            response.N4 = histogram.FourthMomentAboutMean;
+            response.B1 = histogram.B1;
+            response.B2 = histogram.B2;
+            response.W = histogram.W;
+            response.Beta1 = histogram.Beta1;
+            response.Beta2 = histogram.Beta2;
+            response.JohnsonType = histogram.JohnsonType;
             return response;
         }
     }

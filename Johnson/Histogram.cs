@@ -14,34 +14,34 @@ namespace Entities
             this.frequencies = frequencies;
         }
 
-        public int NumberOfEntries() { return frequencies.Length; }
+        public int NumberOfEntries { get { return DistributionProperties.NumberOfEntries(frequencies); } }
 
-        public double N { get { return frequencies.Sum(); } }
+        public double N { get { return DistributionProperties.N(frequencies); } }
 
-        public double FirstMomentAboutOrigin() { return DistributionProperties.FirstMomentAboutOrigin(intervals, frequencies, N); }
+        public double FirstMomentAboutOrigin { get { return DistributionProperties.FirstMomentAboutOrigin(intervals, frequencies, N); } }
 
-        public double SecondMomentAboutOrigin() { return intervals.Zip(frequencies, (i, f) => i * i * f).Sum() / N; }
+        public double SecondMomentAboutOrigin { get { return DistributionProperties.SecondMomentAboutOrigin(intervals, frequencies, N); } }
 
-        public double ThirdMomentAboutOrigin() { return intervals.Zip(frequencies, (i, f) => i * i * i * f).Sum() / N; }
+        public double ThirdMomentAboutOrigin { get { return DistributionProperties.ThirdMomentAboutOrigin(intervals, frequencies, N); } }
 
-        public double FourthMomentAboutOrigin() { return intervals.Zip(frequencies, (i, f) => i * i * i * i * f).Sum() / N; }
+        public double FourthMomentAboutOrigin { get { return DistributionProperties.FourthMomentAboutOrigin(intervals, frequencies, N); } }
 
-        public double SecondMomentAboutMean() { return SecondMomentAboutOrigin() - System.Math.Pow(FirstMomentAboutOrigin(), 2); }
+        public double SecondMomentAboutMean { get { return DistributionProperties.SecondMomentAboutMean(FirstMomentAboutOrigin, SecondMomentAboutOrigin); } }
 
-        public double ThirdMomentAboutMean() { return ThirdMomentAboutOrigin() - 3 * FirstMomentAboutOrigin() * SecondMomentAboutOrigin() + 2 * System.Math.Pow(FirstMomentAboutOrigin(), 3); }
+        public double ThirdMomentAboutMean { get { return DistributionProperties.ThirdMomentAboutMean(FirstMomentAboutOrigin, SecondMomentAboutOrigin, ThirdMomentAboutOrigin); } }
 
-        public double FourthMomentAboutMean() { return FourthMomentAboutOrigin() - 4 * FirstMomentAboutOrigin() * ThirdMomentAboutOrigin() + 6 * System.Math.Pow(FirstMomentAboutOrigin(), 2) * SecondMomentAboutOrigin() - 3 * System.Math.Pow(FirstMomentAboutOrigin(), 4); }
+        public double FourthMomentAboutMean { get { return DistributionProperties.FourthMomentAboutMean(FirstMomentAboutOrigin, SecondMomentAboutOrigin, ThirdMomentAboutOrigin, FourthMomentAboutOrigin); } }
 
-        public double B1() { return System.Math.Pow(ThirdMomentAboutMean(), 2) / System.Math.Pow(SecondMomentAboutMean(), 3); }
+        public double B1 { get { return DistributionProperties.B1(SecondMomentAboutMean, ThirdMomentAboutMean); } }
 
-        public double B2() { return FourthMomentAboutMean() / System.Math.Pow(SecondMomentAboutMean(), 2); }
+        public double B2 { get { return DistributionProperties.B2(SecondMomentAboutMean, FourthMomentAboutMean); } }
 
-        public double W() { return (Math.Pow((1 + 0.5 * B1() + Math.Sqrt(B1() * (1 + 0.25 * B1()))), .333333) + Math.Pow((1 + 0.5 * B1() - Math.Sqrt(B1() * (1 + 0.25 * B1()))), .333333) - 1); }
+        public double W { get { return DistributionProperties.W(B1); } }
 
-        public double Beta1() { return (W() - 1) * Math.Pow(W() + 2, 2); }
+        public double Beta1 { get { return DistributionProperties.Beta1(W); } }
 
-        public double Beta2() { return Math.Pow(W(), 4) + 2 * Math.Pow(W(), 3) + 3 * Math.Pow(W(), 2) - 3; }
+        public double Beta2 { get { return DistributionProperties.Beta2(W); } }
 
-        public string JohnsonType() { return (((Beta2() - B2()) / B2()) < 0) ? "SU" : "SB"; }
+        public string JohnsonType { get { return DistributionProperties.JohnsonType(B2, Beta2); } }
     }
 }

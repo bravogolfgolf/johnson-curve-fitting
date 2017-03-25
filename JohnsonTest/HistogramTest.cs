@@ -19,7 +19,7 @@ namespace Entities
         [TestMethod]
         public void ShouldReturnNumberOfEntriesOfFrequencies()
         {
-            Assert.AreEqual(20, histogram.NumberOfEntries());
+            Assert.AreEqual(20, histogram.NumberOfEntries);
         }
 
         [TestMethod]
@@ -31,51 +31,51 @@ namespace Entities
         [TestMethod]
         public void ShouldReturnFirstMomentAboutOrigin()
         {
-            Assert.AreEqual(4487.5, histogram.FirstMomentAboutOrigin());
+            Assert.AreEqual(4487.5, histogram.FirstMomentAboutOrigin);
         }
 
         [TestMethod]
         public void ShouldReturnSecondMomentAboutOrigin()
         {
-            Assert.AreEqual(20342350, histogram.SecondMomentAboutOrigin());
+            Assert.AreEqual(20342350, histogram.SecondMomentAboutOrigin);
         }
 
         [TestMethod]
         public void ShouldReturnThirdMomentAboutOrigin()
         {
-            Assert.AreEqual(93060609062.5, histogram.ThirdMomentAboutOrigin());
+            Assert.AreEqual(93060609062.5, histogram.ThirdMomentAboutOrigin);
         }
 
         [TestMethod]
         public void ShouldReturnFourthMomentAboutOrigin()
         {
             const double DELTA = .1;
-            Assert.AreEqual(429308429921875.0, histogram.FourthMomentAboutOrigin(), DELTA);
+            Assert.AreEqual(429308429921875.0, histogram.FourthMomentAboutOrigin, DELTA);
         }
 
         [TestMethod]
         public void ShouldReturnSecondMomentOfAboutMean()
         {
-            Assert.AreEqual(204693.75, histogram.SecondMomentAboutMean());
+            Assert.AreEqual(204693.75, histogram.SecondMomentAboutMean);
         }
 
         [TestMethod]
         public void ShouldReturnThirdMomentOfAboutMean()
         {
-            Assert.AreEqual(-62812968.75, histogram.ThirdMomentAboutMean());
+            Assert.AreEqual(-62812968.75, histogram.ThirdMomentAboutMean);
         }
 
         [TestMethod]
         public void ShouldReturnFourthMomentOfAboutMean()
         {
-            Assert.AreEqual(178409223632.75, histogram.FourthMomentAboutMean());
+            Assert.AreEqual(178409223632.75, histogram.FourthMomentAboutMean);
         }
 
         [TestMethod]
         public void ShouldReturnB1()
         {
             const double DELTA = .001;
-            Assert.AreEqual(0.460028664027421, histogram.B1(), DELTA);
+            Assert.AreEqual(0.460028664027421, histogram.B1, DELTA);
         }
 
         [
@@ -83,34 +83,34 @@ namespace Entities
         public void ShouldReturnB2()
         {
             const double DELTA = .001;
-            Assert.AreEqual(4.25802432972137, histogram.B2(), DELTA);
+            Assert.AreEqual(4.25802432972137, histogram.B2, DELTA);
         }
 
         [TestMethod]
         public void ShouldReturnW()
         {
             const double DELTA = .001;
-            Assert.AreEqual(1.04946936586057, histogram.W(), DELTA);
+            Assert.AreEqual(1.04946936586057, histogram.W, DELTA);
         }
 
         [TestMethod]
         public void ShouldReturnBeta1()
         {
             const double DELTA = .001;
-            Assert.AreEqual(0.460028664027421, histogram.Beta1(), DELTA);
+            Assert.AreEqual(0.460028664027421, histogram.Beta1, DELTA);
         }
 
         [TestMethod]
         public void ShouldReturnBeta2()
         {
             const double DELTA = .001;
-            Assert.AreEqual(3.828950489, histogram.Beta2(), DELTA);
+            Assert.AreEqual(3.828950489, histogram.Beta2, DELTA);
         }
 
         [TestMethod]
         public void ShouldReturnJohnsonType()
         {
-            Assert.AreEqual("SU", histogram.JohnsonType());
+            Assert.AreEqual("SU", histogram.JohnsonType);
         }
     }
 }
