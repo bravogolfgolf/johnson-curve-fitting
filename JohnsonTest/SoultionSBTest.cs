@@ -52,5 +52,29 @@ namespace Entities
                 Assert.AreEqual(actuals[i], zEndSeries[i], DELTA);
             }
         }
+
+        [TestMethod]
+        public void ShouldReturnCumNormalSeries()
+        {
+            const double DELTA = .1;
+            double[] actuals = { 65.80826973, 165.0911167, 296.2093789, 439.2760865, 577.4066435, 699.2704114, 798.958707, 874.9026213, 928.6051056, 963.4751971, 983.8463991, 994.1840372, 998.4694315, 999.7634499, 1000 };
+            double[] cumNormalSeries = solution.CumNormalSeries;
+            for (int i = 0; i < cumNormalSeries.Length - 1; i++)
+            {
+                Assert.AreEqual(actuals[i], cumNormalSeries[i], DELTA);
+            }
+        }
+
+        [TestMethod]
+        public void ShouldReturnGraduationSeries()
+        {
+            const double DELTA = .01;
+            double[] actuals = { 65.80826973, 99.282847, 131.1182621, 143.0667076, 138.130557, 121.8637679, 99.68829561, 75.94391428, 53.70248429, 34.87009146, 20.371202, 10.33763811, 4.285394256, 1.294018402, 0.236550142 };
+            double[] graduationSeries = solution.GraduationSeries;
+            for (int i = 0; i < graduationSeries.Length - 1; i++)
+            {
+                Assert.AreEqual(actuals[i], graduationSeries[i], DELTA);
+            }
+        }
     }
 }

@@ -52,7 +52,7 @@ namespace Entities
 
         protected double W(double b1)
         {
-            return (Math.Pow((1 + 0.5 * b1 + Math.Sqrt(b1 * (1 + 0.25 * b1))), .333333) + Math.Pow((1 + 0.5 * b1 - Math.Sqrt(b1 * (1 + 0.25 * b1))), .333333) - 1);
+            return (Math.Pow((1 + 0.5 * b1 + Math.Sqrt(b1 * (1 + 0.25 * b1))), (double)1 / 3) + Math.Pow((1 + 0.5 * b1 - Math.Sqrt(b1 * (1 + 0.25 * b1))), (double)1 / 3) - 1);
         }
 
         protected double Beta1(double w)

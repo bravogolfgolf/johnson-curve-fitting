@@ -68,6 +68,7 @@ namespace Entities
             }
         }
 
+
         private double DOpt()
         {
             return 1 / SF();
@@ -83,5 +84,49 @@ namespace Entities
             return Math.Sign(histogram.ThirdMomentAboutMean) * Math.Abs(-FirstMomentAboutOrigin(FunctionOfYSeries, histogram.Frequencies, histogram.N) / SF());
         }
 
+        public double[] CumNormalSeries
+        {
+            get
+            {
+                double[] cumNormalSeries = new double[histogram.NumberOfEntries];
+                for (int i = 0; i < cumNormalSeries.Length - 1; i++)
+                {
+                    cumNormalSeries[i] = NormalDistributon(ZEndSeries[i]) * histogram.N;
+                }
+                cumNormalSeries[cumNormalSeries.Length - 1] = histogram.N;
+                return cumNormalSeries;
+            }
+        }
+
+        private double NormalDistributon(double zEnd)
+        {
+            return 0.5 * (1.0 + (Math.Sign(zEnd) * ErrorFunction(Math.Abs(zEnd) / Math.Sqrt(2))));
+        }
+
+        private double ErrorFunction(double x)
+        {
+            const double a1 = 0.254829592;
+            const double a2 = -0.284496736;
+            const double a3 = 1.421413741;
+            const double a4 = -1.453152027;
+            const double a5 = 1.061405429;
+            const double p = 0.3275911;
+
+            double t = 1 / (1 + p * x);
+            return 1 - ((((((a5 * t + a4) * t) + a3) * t + a2) * t) + a1) * t * Math.Exp(-1 * Math.Pow(x, 2));
+        }
+        public double[] GraduationSeries
+        {
+            get
+            {
+                double[] graduationSeries = new double[histogram.NumberOfEntries];
+                graduationSeries[0] = CumNormalSeries[0];
+                for (int i = 1; i < graduationSeries.Length; i++)
+                {
+                    graduationSeries[i] = CumNormalSeries[i] - CumNormalSeries[i - 1];
+                }
+                return graduationSeries;
+            }
+        }
     }
 }
