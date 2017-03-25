@@ -5,26 +5,16 @@ namespace Entities
     [TestClass]
     public class SoultionSBTest
     {
-        Entities.SoultionSB solution;
-        double[] frequencies = { 34.0, 145.00, 156.00, 145.00, 123.00, 103.00, 86.00, 71.00, 55.00, 37.00, 21.00, 13.00, 7.00, 3.00, 1.00 };
-
+        private SoultionSB solution;
+        private double[] intervals = { 17.0, 22.0, 27.0, 32.0, 37.0, 42.0, 47.0, 52.0, 57.0, 62.0, 67.0, 72.0, 77.0, 82.0, 87.0 };
+        private double[] frequencies = { 34.0, 145.00, 156.00, 145.00, 123.00, 103.00, 86.00, 71.00, 55.00, 37.00, 21.00, 13.00, 7.00, 3.00, 1.00 };
+        private Histogram histogram;
 
         [TestInitialize]
         public void SetUp()
         {
-            solution = new Entities.SoultionSB(frequencies);
-        }
-
-        [TestMethod]
-        public void ShouldReturnNumberOfEntriesOfFrequencies()
-        {
-            Assert.AreEqual(15, solution.NumberOfEntries);
-        }
-
-        [TestMethod]
-        public void ShouldReturnSumOfEntriesOfFrequencies()
-        {
-            Assert.AreEqual(1000, solution.N);
+            histogram = new Histogram(intervals, frequencies);
+            solution = new SoultionSB(histogram);
         }
 
         [TestMethod]
@@ -52,7 +42,6 @@ namespace Entities
         }
 
         [TestMethod]
-        [Ignore]
         public void ShouldReturnZEndSeries()
         {
             const double DELTA = .001;
@@ -62,13 +51,6 @@ namespace Entities
             {
                 Assert.AreEqual(actuals[i], zEndSeries[i], DELTA);
             }
-        }
-
-        [TestMethod]
-        [Ignore]
-        public void ShouldReturnFirstMomentAboutOrigin()
-        {
-            Assert.AreEqual(37.8750, solution.FirstMomentAboutOrigin());
         }
     }
 }

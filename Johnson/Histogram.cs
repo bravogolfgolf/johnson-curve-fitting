@@ -1,9 +1,8 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 
 namespace Entities
 {
-    public class Histogram
+    public class Histogram : Distribution
     {
         private double[] intervals;
         private double[] frequencies;
@@ -14,34 +13,51 @@ namespace Entities
             this.frequencies = frequencies;
         }
 
-        public int NumberOfEntries { get { return DistributionProperties.NumberOfEntries(frequencies); } }
+        public double[] Frequencies { get { return frequencies; } }
 
-        public double N { get { return DistributionProperties.N(frequencies); } }
+        public int NumberOfEntries
+        { get { return frequencies.Length; } }
 
-        public double FirstMomentAboutOrigin { get { return DistributionProperties.FirstMomentAboutOrigin(intervals, frequencies, N); } }
+        public double N
+        { get { return frequencies.Sum(); } }
 
-        public double SecondMomentAboutOrigin { get { return DistributionProperties.SecondMomentAboutOrigin(intervals, frequencies, N); } }
+        public new double FirstMomentAboutOrigin
+        { get { return FirstMomentAboutOrigin(intervals, frequencies, N); } }
 
-        public double ThirdMomentAboutOrigin { get { return DistributionProperties.ThirdMomentAboutOrigin(intervals, frequencies, N); } }
+        public new double SecondMomentAboutOrigin
+        { get { return SecondMomentAboutOrigin(intervals, frequencies, N); } }
 
-        public double FourthMomentAboutOrigin { get { return DistributionProperties.FourthMomentAboutOrigin(intervals, frequencies, N); } }
+        public new double ThirdMomentAboutOrigin
+        { get { return ThirdMomentAboutOrigin(intervals, frequencies, N); } }
 
-        public double SecondMomentAboutMean { get { return DistributionProperties.SecondMomentAboutMean(FirstMomentAboutOrigin, SecondMomentAboutOrigin); } }
+        public new double FourthMomentAboutOrigin
+        { get { return FourthMomentAboutOrigin(intervals, frequencies, N); } }
 
-        public double ThirdMomentAboutMean { get { return DistributionProperties.ThirdMomentAboutMean(FirstMomentAboutOrigin, SecondMomentAboutOrigin, ThirdMomentAboutOrigin); } }
+        public new double SecondMomentAboutMean
+        { get { return SecondMomentAboutMean(FirstMomentAboutOrigin, SecondMomentAboutOrigin); } }
 
-        public double FourthMomentAboutMean { get { return DistributionProperties.FourthMomentAboutMean(FirstMomentAboutOrigin, SecondMomentAboutOrigin, ThirdMomentAboutOrigin, FourthMomentAboutOrigin); } }
+        public new double ThirdMomentAboutMean
+        { get { return ThirdMomentAboutMean(FirstMomentAboutOrigin, SecondMomentAboutOrigin, ThirdMomentAboutOrigin); } }
 
-        public double B1 { get { return DistributionProperties.B1(SecondMomentAboutMean, ThirdMomentAboutMean); } }
+        public new double FourthMomentAboutMean
+        { get { return FourthMomentAboutMean(FirstMomentAboutOrigin, SecondMomentAboutOrigin, ThirdMomentAboutOrigin, FourthMomentAboutOrigin); } }
 
-        public double B2 { get { return DistributionProperties.B2(SecondMomentAboutMean, FourthMomentAboutMean); } }
+        public new double B1
+        { get { return B1(SecondMomentAboutMean, ThirdMomentAboutMean); } }
 
-        public double W { get { return DistributionProperties.W(B1); } }
+        public new double B2
+        { get { return B2(SecondMomentAboutMean, FourthMomentAboutMean); } }
 
-        public double Beta1 { get { return DistributionProperties.Beta1(W); } }
+        public new double W
+        { get { return W(B1); } }
 
-        public double Beta2 { get { return DistributionProperties.Beta2(W); } }
+        public new double Beta1
+        { get { return Beta1(W); } }
 
-        public string JohnsonType { get { return DistributionProperties.JohnsonType(B2, Beta2); } }
+        public new double Beta2
+        { get { return Beta2(W); } }
+
+        public new string JohnsonType
+        { get { return JohnsonType(B2, Beta2); } }
     }
 }
