@@ -1,6 +1,7 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Entities;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Utilites
+namespace Utilities
 {
     [TestClass]
     public class HistogramTest

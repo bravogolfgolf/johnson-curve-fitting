@@ -1,6 +1,7 @@
 ﻿using System.Linq;
+using Utilities;
 
-namespace Utilites
+namespace Entities
 {
     public class Histogram
     {

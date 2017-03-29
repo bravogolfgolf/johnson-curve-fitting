@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Utilites
+namespace Entities
 {
     [TestClass]
     public class SoultionSBTest

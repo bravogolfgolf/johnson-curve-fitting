@@ -1,6 +1,7 @@
 ﻿using System;
+using Utilities;
 
-namespace Utilites
+namespace Entities
 {
     public class SoultionSB : Solution
     {

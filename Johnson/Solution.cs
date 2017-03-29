@@ -1,4 +1,4 @@
-﻿namespace Utilites
+﻿namespace Entities
 {
     public abstract class Solution
     {
