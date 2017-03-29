@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Entities
+namespace Utilites
 {
     public class SoultionSB : Solution
     {
@@ -74,12 +74,12 @@ namespace Entities
 
         private double SF()
         {
-            return Math.Sqrt(SecondMomentAboutOrigin(FunctionOfYSeries, histogram.Frequencies, histogram.N) - Math.Pow(FirstMomentAboutOrigin(FunctionOfYSeries, histogram.Frequencies, histogram.N), 2));
+            return Math.Sqrt(Formulae.SecondMomentAboutOrigin(FunctionOfYSeries, histogram.Frequencies, histogram.N) - Math.Pow(Formulae.FirstMomentAboutOrigin(FunctionOfYSeries, histogram.Frequencies, histogram.N), 2));
         }
 
         private double GOpt()
         {
-            return Math.Sign(histogram.ThirdMomentAboutMean) * Math.Abs(-FirstMomentAboutOrigin(FunctionOfYSeries, histogram.Frequencies, histogram.N) / SF());
+            return Math.Sign(histogram.ThirdMomentAboutMean) * Math.Abs(-Formulae.FirstMomentAboutOrigin(FunctionOfYSeries, histogram.Frequencies, histogram.N) / SF());
         }
 
         public override double[] CumNormalSeries
@@ -128,30 +128,30 @@ namespace Entities
         }
 
         public override double FirstMomentAboutOrigin
-        { get { return FirstMomentAboutOrigin(YSeries, GraduationSeries, histogram.N); } }
+        { get { return Formulae.FirstMomentAboutOrigin(YSeries, GraduationSeries, histogram.N); } }
 
         public override double SecondMomentAboutOrigin
-        { get { return SecondMomentAboutOrigin(YSeries, GraduationSeries, histogram.N); } }
+        { get { return Formulae.SecondMomentAboutOrigin(YSeries, GraduationSeries, histogram.N); } }
 
         public override double ThirdMomentAboutOrigin
-        { get { return ThirdMomentAboutOrigin(YSeries, GraduationSeries, histogram.N); } }
+        { get { return Formulae.ThirdMomentAboutOrigin(YSeries, GraduationSeries, histogram.N); } }
 
         public override double FourthMomentAboutOrigin
-        { get { return FourthMomentAboutOrigin(YSeries, GraduationSeries, histogram.N); } }
+        { get { return Formulae.FourthMomentAboutOrigin(YSeries, GraduationSeries, histogram.N); } }
 
         public override double SecondMomentAboutMean
-        { get { return SecondMomentAboutMean(FirstMomentAboutOrigin, SecondMomentAboutOrigin); } }
+        { get { return Formulae.SecondMomentAboutMean(FirstMomentAboutOrigin, SecondMomentAboutOrigin); } }
 
         public override double ThirdMomentAboutMean
-        { get { return ThirdMomentAboutMean(FirstMomentAboutOrigin, SecondMomentAboutOrigin, ThirdMomentAboutOrigin); } }
+        { get { return Formulae.ThirdMomentAboutMean(FirstMomentAboutOrigin, SecondMomentAboutOrigin, ThirdMomentAboutOrigin); } }
 
         public override double FourthMomentAboutMean
-        { get { return FourthMomentAboutMean(FirstMomentAboutOrigin, SecondMomentAboutOrigin, ThirdMomentAboutOrigin, FourthMomentAboutOrigin); } }
+        { get { return Formulae.FourthMomentAboutMean(FirstMomentAboutOrigin, SecondMomentAboutOrigin, ThirdMomentAboutOrigin, FourthMomentAboutOrigin); } }
 
         public override double B1
-        { get { return B1(SecondMomentAboutMean, ThirdMomentAboutMean); } }
+        { get { return Formulae.B1(SecondMomentAboutMean, ThirdMomentAboutMean); } }
 
         public override double B2
-        { get { return B2(SecondMomentAboutMean, FourthMomentAboutMean); } }
+        { get { return Formulae.B2(SecondMomentAboutMean, FourthMomentAboutMean); } }
     }
 }

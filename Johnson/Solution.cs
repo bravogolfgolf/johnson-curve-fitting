@@ -1,6 +1,6 @@
-﻿namespace Entities
+﻿namespace Utilites
 {
-    public abstract class Solution : Distribution
+    public abstract class Solution
     {
         public abstract double[] YSeries { get; }
 
@@ -12,22 +12,22 @@
 
         public abstract double[] GraduationSeries { get; }
 
-        public new abstract double FirstMomentAboutOrigin { get; }
+        public abstract double FirstMomentAboutOrigin { get; }
 
-        public new abstract double SecondMomentAboutOrigin { get; }
+        public abstract double SecondMomentAboutOrigin { get; }
 
-        public new abstract double ThirdMomentAboutOrigin { get; }
+        public abstract double ThirdMomentAboutOrigin { get; }
 
-        public new abstract double FourthMomentAboutOrigin { get; }
+        public abstract double FourthMomentAboutOrigin { get; }
 
-        public new abstract double SecondMomentAboutMean { get; }
+        public abstract double SecondMomentAboutMean { get; }
 
-        public new abstract double ThirdMomentAboutMean { get; }
+        public abstract double ThirdMomentAboutMean { get; }
 
-        public new abstract double FourthMomentAboutMean { get; }
+        public abstract double FourthMomentAboutMean { get; }
 
-        public new abstract double B1 { get; }
+        public abstract double B1 { get; }
 
-        public new abstract double B2 { get; }
+        public abstract double B2 { get; }
     }
 }
