@@ -55,6 +55,7 @@
     <Compile Include="InitialUsecaseTest.cs" />
     <Compile Include="RequestBuilderTest.cs" />
     <Compile Include="ControllerFactoryTest.cs" />
+    <Compile Include="SoultionSUTest.cs" />
     <Compile Include="SoultionSBTest.cs" />
     <Compile Include="UsecaseFactoryTest.cs" />
   </ItemGroup>

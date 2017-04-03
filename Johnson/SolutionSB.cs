@@ -3,13 +3,13 @@ using Utilities;
 
 namespace Entities
 {
-    public class SoultionSB : Solution
+    public class SolutionSB : Solution
     {
         private Histogram histogram;
         private double firstY;
         private double lastY;
 
-        public SoultionSB(Histogram histogram, double firstY = .1253)
+        public SolutionSB(Histogram histogram, double firstY = .1253)
         {
             this.histogram = histogram;
             this.firstY = firstY;
@@ -20,7 +20,7 @@ namespace Entities
         {
             get
             {
-                double yIncrement = GetYIncrement();
+                double yIncrement = YIncrement();
                 double[] ySeries = new double[histogram.NumberOfEntries];
                 ySeries[0] = firstY;
                 for (int i = 1; i < ySeries.Length - 1; i++)
@@ -32,7 +32,7 @@ namespace Entities
             }
         }
 
-        private double GetYIncrement()
+        private double YIncrement()
         {
             return (lastY - firstY) / (histogram.NumberOfEntries - 1);
         }
@@ -59,7 +59,7 @@ namespace Entities
             get
             {
                 double[] zEndSeries = new double[histogram.NumberOfEntries];
-                double dY = GetYIncrement() / 2;
+                double dY = YIncrement() / 2;
                 for (int i = 0; i < zEndSeries.Length - 1; i++)
                 {
                     zEndSeries[i] = Math.Log((YSeries[i] + dY) / (1 - (YSeries[i] + dY))) * DOpt() + GOpt();
@@ -114,6 +114,7 @@ namespace Entities
             double t = 1 / (1 + p * x);
             return 1 - ((((((a5 * t + a4) * t) + a3) * t + a2) * t) + a1) * t * Math.Exp(-1 * Math.Pow(x, 2));
         }
+
         public override double[] GraduationSeries
         {
             get

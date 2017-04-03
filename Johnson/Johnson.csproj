@@ -191,7 +191,8 @@
     <Compile Include="InitialUsecase.cs" />
     <Compile Include="InitialView.cs" />
     <Compile Include="Solution.cs" />
-    <Compile Include="SoultionSB.cs" />
+    <Compile Include="SolutionSB.cs" />
+    <Compile Include="SolutionSU.cs" />
     <Compile Include="UsecaseFactory.cs" />
     <EmbeddedResource Include="Ribbon.resx">
       <DependentUpon>Ribbon.cs</DependentUpon>
