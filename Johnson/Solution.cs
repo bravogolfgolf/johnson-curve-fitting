@@ -14,7 +14,7 @@ namespace Entities
         protected double[] cumNormalSeries;
         protected double[] graduationSeries;
 
-        public Solution(Histogram histogram)
+        protected Solution(Histogram histogram)
         {
             this.histogram = histogram;
         }
