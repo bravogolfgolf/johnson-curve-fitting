@@ -21,7 +21,7 @@ namespace Entities
         public void ShouldReturnYSeries()
         {
             const double DELTA = .0001;
-            double[] actuals = { -2.7036136842105300, -2.4685168421052600, -2.2334200000000000, -1.9983231578947400, -1.7632263157894700, -1.5281294736842100, -1.2930326315789500, -1.0579357894736800, -0.8228389473684210, -0.5877421052631580, -0.3526452631578940, -0.1175484210526310, 0.1175484210526320, 0.3526452631578950, 0.5877421052631580, 0.8228389473684220, 1.0579357894736800, 1.2930326315789500, 1.5281294736842100, 1.7632263157894700 };
+            double[] actuals = { -2.70361368421053, -2.46851684210526, -2.23342, -1.99832315789474, -1.76322631578947, -1.52812947368421, -1.29303263157895, -1.05793578947368, -0.822838947368421, -0.587742105263158, -0.352645263157894, -0.117548421052631, 0.117548421052632, 0.352645263157895, 0.587742105263158, 0.822838947368422, 1.05793578947368, 1.29303263157895, 1.52812947368421, 1.76322631578947 };
             double[] ySeries = solution.YSeries;
             for (int i = 0; i < ySeries.Length; i++)
             {
@@ -33,7 +33,7 @@ namespace Entities
         public void ShouldReturnFunctionOfYSeries()
         {
             const double DELTA = .0001;
-            double[] actuals = { -1.720297799, -1.635466401, -1.543395213, -1.442877309, -1.332433433, -1.210258539, -1.074188733, -0.921746353, -0.750397612, -0.558280923, -0.345714299, -0.117278338, 0.117278338, 0.345714299, 0.558280923, 0.750397612, 0.921746353, 1.074188733, 1.210258539, 1.332433433 };
+            double[] actuals = { -1.72030619756382, -1.63547470090389, -1.54340338641427, -1.44288531699841, -1.33244122271135, -1.21026603251311, -1.07419581622742, -0.921752860671035, -0.750403302142408, -0.558285460535683, -0.345717277415679, -0.117279383784053, 0.117279383784054, 0.345717277415679, 0.558285460535684, 0.750403302142409, 0.921752860671036, 1.07419581622742, 1.21026603251311, 1.33244122271135 };
             double[] functionOfYSeries = solution.FunctionOfYSeries;
             for (int i = 0; i < functionOfYSeries.Length; i++)
             {
@@ -45,7 +45,7 @@ namespace Entities
         public void ShouldReturnZEndSeries()
         {
             const double DELTA = .0001;
-            double[] actuals = { -2.614318197, -2.464297727, -2.301006016, -2.122173244, -1.925020425, -1.706178674, -1.461681078, -1.187179513, -0.878713369, -0.534559621, -0.158453184, 0.237310095, 0.633073374, 1.009179811, 1.353333558, 1.661799702, 1.936301267, 2.180798864, 2.399640615 };
+            double[] actuals = { -2.61431260499347, -2.46429299267164, -2.30100217737942, -2.12217033282867, -1.92501845974085, -1.70617764704497, -1.46168093510822, -1.18718012188132, -0.878714478938664, -0.534560840755667, -0.158454039445557, 0.237309956747426, 0.633073952940409, 1.00918075425052, 1.35333439243352, 1.66180003537617, 1.93630084860307, 2.18079756053982, 2.3996383732357 };
             double[] zEndSeries = solution.ZEndSeries;
             for (int i = 0; i < zEndSeries.Length - 1; i++)
             {
@@ -57,7 +57,7 @@ namespace Entities
         public void ShouldReturnCumNormalSeries()
         {
             const double DELTA = .0001;
-            double[] actuals = { 0.89405728, 1.372820251, 2.139129104, 3.382319251, 5.422680299, 8.797481803, 14.38286249, 23.51568202, 37.95567082, 59.29544113, 87.40997079, 118.7583769, 147.3314271, 168.7111593, 182.4050907, 190.3447058, 194.7169186, 197.0801703, 198.3588825, 200 };
+            double[] actuals = { 0.894071914961327, 1.37283838551035, 2.13915080059076, 3.38234368888308, 5.42270488829752, 8.79750092192305, 14.3828663998251, 23.5156579947369, 37.9556106096777, 59.2953568008893, 87.4099034260512, 118.758366166536, 147.331464919707, 168.711204513368, 182.405117338534, 190.344712483797, 194.716913506738, 197.080160690565, 198.358872419738, 200 };
             double[] cumNormalSeries = solution.CumNormalSeries;
             for (int i = 0; i < cumNormalSeries.Length - 1; i++)
             {
@@ -69,7 +69,7 @@ namespace Entities
         public void ShouldReturnGraduationSeries()
         {
             const double DELTA = .0001;
-            double[] actuals = { 0.89405728, 0.478762971, 0.766308853, 1.243190146, 2.040361049, 3.374801504, 5.585380683, 9.132819532, 14.4399888, 21.33977031, 28.11452966, 31.34840608, 28.57305024, 21.37973217, 13.69393142, 7.939615101, 4.372212831, 2.363251701, 1.278712134, 1.641117532 };
+            double[] actuals = { 0.894071914961327, 0.478766470549024, 0.76631241508041, 1.24319288829232, 2.04036119941444, 3.37479603362553, 5.58536547790208, 9.13279159491173, 14.4399526149409, 21.3397461912116, 28.1145466251619, 31.3484627404847, 28.5730987531706, 21.379739593661, 13.693912825167, 7.93959514526264, 4.37220102294037, 2.36324718382784, 1.27871172917273, 1.64112758026192 };
             double[] graduationSeries = solution.GraduationSeries;
             for (int i = 0; i < graduationSeries.Length - 1; i++)
             {
@@ -81,63 +81,63 @@ namespace Entities
         public void ShouldReturnFirstMomentAboutOrigin()
         {
             const double DELTA = .0001;
-            Assert.AreEqual(-0.167240338, solution.FirstMomentAboutOrigin, DELTA);
+            Assert.AreEqual(-0.16724180196, solution.FirstMomentAboutOrigin, DELTA);
         }
 
         [TestMethod]
         public void ShouldReturnSecondMomentAboutOrigin()
         {
             const double DELTA = .0001;
-            Assert.AreEqual(0.515961271, solution.SecondMomentAboutOrigin, DELTA);
+            Assert.AreEqual(0.51597075816, solution.SecondMomentAboutOrigin, DELTA);
         }
 
         [TestMethod]
         public void ShouldReturnThirdMomentAboutOrigin()
         {
             const double DELTA = .0001;
-            Assert.AreEqual(-0.355353119, solution.ThirdMomentAboutOrigin, DELTA);
+            Assert.AreEqual(-0.35536406152, solution.ThirdMomentAboutOrigin, DELTA);
         }
 
         [TestMethod]
         public void ShouldReturnFourthMomentAboutOrigin()
         {
             const double DELTA = .0001;
-            Assert.AreEqual(1.098714178, solution.FourthMomentAboutOrigin, DELTA);
+            Assert.AreEqual(1.09875841152, solution.FourthMomentAboutOrigin, DELTA);
         }
 
         [TestMethod]
         public void ShouldReturnSecondMomentOfAboutMean()
         {
             const double DELTA = .0001;
-            Assert.AreEqual(0.48799194, solution.SecondMomentAboutMean, DELTA);
+            Assert.AreEqual(0.48800093784, solution.SecondMomentAboutMean, DELTA);
         }
 
         [TestMethod]
         public void ShouldReturnThirdMomentOfAboutMean()
         {
             const double DELTA = .0001;
-            Assert.AreEqual(-0.105839708, solution.ThirdMomentAboutMean, DELTA);
+            Assert.AreEqual(-0.10584386976, solution.ThirdMomentAboutMean, DELTA);
         }
 
         [TestMethod]
         public void ShouldReturnFourthMomentOfAboutMean()
         {
             const double DELTA = .0001;
-            Assert.AreEqual(0.945236373, solution.FourthMomentAboutMean, DELTA);
+            Assert.AreEqual(0.94527423136, solution.FourthMomentAboutMean, DELTA);
         }
 
         [TestMethod]
         public void ShouldReturnB1()
         {
             const double DELTA = .0001;
-            Assert.AreEqual(0.096396067, solution.B1, DELTA);
+            Assert.AreEqual(0.09639831652, solution.B1, DELTA);
         }
 
         [TestMethod]
         public void ShouldReturnB2()
         {
             const double DELTA = .0001;
-            Assert.AreEqual(3.96931099, solution.B2, DELTA);
+            Assert.AreEqual(3.96932359467, solution.B2, DELTA);
         }
     }
 }
