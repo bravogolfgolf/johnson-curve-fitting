@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
+using System.Collections.Generic;
 using Utilities;
+
 
 namespace Entities
 {
@@ -9,101 +11,102 @@ namespace Entities
         private Histogram histogram;
         private double firstY;
         private double lastY;
+        private double[] ySeries;
+        private double[] functionOfYSeries;
+        private double[] zEndSeries;
+        private double[] cumNormalSeries;
+        private double[] graduationSeries;
 
         public SolutionSU(Histogram histogram, double lastY = 2.2334)
         {
             this.histogram = histogram;
             this.firstY = -lastY;
             this.lastY = lastY;
-            // this.firstY = ModeDifference - lastY;
-            // this.lastY = ModeDifference + lastY;
+            CalculateYSeries();
+            CalculateFunctionOfYSeries();
+            CalculateZEndSeries();
+            CalculateCumNormalSeries();
+            CalculateGraduationSeries();
+            this.firstY = ModeDifference() - lastY;
+            this.lastY = ModeDifference() + lastY;
+            CalculateYSeries();
+            CalculateFunctionOfYSeries();
+            CalculateZEndSeries();
+            CalculateCumNormalSeries();
+            CalculateGraduationSeries();
         }
 
-        private double ModeDifference
+        private double ModeDifference()
         {
-            get
+            double f = FrequenciesMode();
+            Double g = GraduationSeriesMode();
+            return GraduationSeriesMode() - FrequenciesMode();
+        }
+
+        private double GraduationSeriesMode()
+        {
+            return YSeries[MaxGradIndex()];
+        }
+
+        private int MaxGradIndex()
+        {
+            return GraduationSeries.ToList().IndexOf(MaxGrad());
+        }
+
+        private double MaxGrad()
+        {
+            double x = GraduationSeries.Max();
+            return x;
+        }
+
+        private double FrequenciesMode()
+        {
+            List<int> list = MaxFrequencyIndices();
+            double numerator = 0;
+            foreach (int Item in MaxFrequencyIndices())
             {
-                return GraduationSeriesMode - FrequenciesMode;
+                numerator = numerator + YSeries[Item];
             }
+
+            double n = numerator;
+            double c = MaxFrequencyIndices().Count;
+
+            return numerator / MaxFrequencyIndices().Count;
         }
 
-        public double GraduationSeriesMode
+        private List<int> MaxFrequencyIndices()
         {
-            get
+            List<int> maxFrequencyIndicesSeries = new List<int>();
+            for (int index = 0; index < histogram.Frequencies.Length; index++)
             {
-                return YSeries[MaxGradIndex];
-            }
-        }
-
-        public int MaxGradIndex
-        {
-            get
-            {
-                return GraduationSeries.ToList().IndexOf(MaxGrad);
-            }
-        }
-
-        public double MaxGrad
-        {
-            get
-            {
-                double x = GraduationSeries.Max();
-                return x;
-            }
-        }
-
-        public double FrequenciesMode
-        {
-            get
-            {
-                double numerator = 0;
-                double denominator = 0;
-                foreach (int item in MaxFrequencyIndices)
+                if (histogram.Frequencies[index] == MaxFrequency())
                 {
-                    numerator = numerator + YSeries[item];
-                    denominator = denominator + 1;
+                    maxFrequencyIndicesSeries.Add(index);
                 }
-                return numerator / denominator;
             }
+            return maxFrequencyIndicesSeries;
         }
 
-        public int[] MaxFrequencyIndices
+        private double MaxFrequency()
         {
-            get
-            {
-                int[] maxFrequencyIndicesSeries = new int[histogram.NumberOfEntries];
-                int counter = 0;
-                for (int index = 0; index < maxFrequencyIndicesSeries.Length; index++)
-                {
-                    if (histogram.Frequencies[index] == MaxFrequency)
-                    {
-                        maxFrequencyIndicesSeries[counter] = index;
-                        counter++;
-                    }
-                }
-                return maxFrequencyIndicesSeries;
-            }
+            return histogram.Frequencies.Max();
         }
 
-        public double MaxFrequency
+        private void CalculateYSeries()
         {
-            get
+            ySeries = new double[histogram.NumberOfEntries];
+            ySeries[0] = firstY;
+            for (int i = 1; i < ySeries.Length - 1; i++)
             {
-                return histogram.Frequencies.Max();
+                ySeries[i] = ySeries[i - 1] + YIncrement();
             }
+            ySeries[ySeries.Length - 1] = lastY;
         }
 
         public override double[] YSeries
         {
             get
             {
-                double[] ySeries = new double[histogram.NumberOfEntries];
-                ySeries[0] = firstY;
-                for (int i = 1; i < ySeries.Length - 1; i++)
-                {
-                    ySeries[i] = ySeries[i - 1] + YIncrement();
-                }
-                ySeries[ySeries.Length - 1] = lastY;
                 return ySeries;
             }
         }
@@ -113,16 +116,34 @@ namespace Entities
             return (lastY - firstY) / (histogram.NumberOfEntries - 1);
         }
 
+        private void CalculateFunctionOfYSeries()
+        {
+            functionOfYSeries = new double[histogram.NumberOfEntries];
+            for (int i = 0; i < functionOfYSeries.Length; i++)
+            {
+                functionOfYSeries[i] = Math.Log(YSeries[i] + Math.Sqrt(YSeries[i] * YSeries[i] + 1));
+            }
+        }
+
         public override double[] FunctionOfYSeries
         {
             get
             {
-                double[] functionOfYSeries = new double[histogram.NumberOfEntries];
-                for (int i = 0; i < functionOfYSeries.Length; i++)
-                {
-                    functionOfYSeries[i] = Math.Log(YSeries[i] + Math.Sqrt(YSeries[i] * YSeries[i] + 1));
-                }
                 return functionOfYSeries;
+            }
+        }
+
+        private void CalculateZEndSeries()
+        {
+            zEndSeries = new double[histogram.NumberOfEntries];
+            double dY = YIncrement() / 2;
+            for (int i = 0; i < zEndSeries.Length - 1; i++)
+            {
+                // Log(x + Sqrt(x * x + 1))
+                double x = YSeries[i] + dY;
+                double y = DOpt();
+                double z = GOpt();
+                zEndSeries[i] = Math.Log(x + Math.Sqrt(x * x + 1)) * y + z;
             }
         }
 
@@ -130,16 +151,6 @@ namespace Entities
         {
             get
             {
-                double[] zEndSeries = new double[histogram.NumberOfEntries];
-                double dY = YIncrement() / 2;
-                for (int i = 0; i < zEndSeries.Length - 1; i++)
-                {
-                    // Log(x + Sqrt(x * x + 1))
-                    double x = YSeries[i] + dY;
-                    double y = DOpt();
-                    double z = GOpt();
-                    zEndSeries[i] = Math.Log(x + Math.Sqrt(x * x + 1)) * y + z;
-                }
                 return zEndSeries;
             }
         }
@@ -159,16 +170,20 @@ namespace Entities
             return -Math.Sign(histogram.ThirdMomentAboutMean) * Math.Abs(-Formulae.FirstMomentAboutOrigin(FunctionOfYSeries, histogram.Frequencies, histogram.N) / SF());
         }
 
+        private void CalculateCumNormalSeries()
+        {
+            cumNormalSeries = new double[histogram.NumberOfEntries];
+            for (int i = 0; i < cumNormalSeries.Length - 1; i++)
+            {
+                cumNormalSeries[i] = NormalDistributon(ZEndSeries[i]) * histogram.N;
+            }
+            cumNormalSeries[cumNormalSeries.Length - 1] = histogram.N;
+        }
+
         public override double[] CumNormalSeries
         {
             get
             {
-                double[] cumNormalSeries = new double[histogram.NumberOfEntries];
-                for (int i = 0; i < cumNormalSeries.Length - 1; i++)
-                {
-                    cumNormalSeries[i] = NormalDistributon(ZEndSeries[i]) * histogram.N;
-                }
-                cumNormalSeries[cumNormalSeries.Length - 1] = histogram.N;
                 return cumNormalSeries;
             }
         }
@@ -191,16 +206,20 @@ namespace Entities
             return 1 - ((((((a5 * t + a4) * t) + a3) * t + a2) * t) + a1) * t * Math.Exp(-1 * Math.Pow(x, 2));
         }
 
+        private void CalculateGraduationSeries()
+        {
+            graduationSeries = new double[histogram.NumberOfEntries];
+            graduationSeries[0] = CumNormalSeries[0];
+            for (int i = 1; i < graduationSeries.Length; i++)
+            {
+                graduationSeries[i] = CumNormalSeries[i] - CumNormalSeries[i - 1];
+            }
+        }
+
         public override double[] GraduationSeries
         {
             get
             {
-                double[] graduationSeries = new double[histogram.NumberOfEntries];
-                graduationSeries[0] = CumNormalSeries[0];
-                for (int i = 1; i < graduationSeries.Length; i++)
-                {
-                    graduationSeries[i] = CumNormalSeries[i] - CumNormalSeries[i - 1];
-                }
                 return graduationSeries;
             }
         }
