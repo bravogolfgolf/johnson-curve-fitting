@@ -19,19 +19,29 @@ namespace Johnson
 
         public void Present(IInitialResponse response)
         {
-            viewModel.mean1stMomment = response.Mean1stMomment;
-            viewModel.mean2ndtMomment = response.Mean2ndtMomment;
-            viewModel.mean3rdMomment = response.Mean3rdMomment;
-            viewModel.mean4thMomment = response.Mean4thMomment;
-            viewModel.n2 = response.N2;
-            viewModel.n3 = response.N3;
-            viewModel.n4 = response.N4;
-            viewModel.b1 = response.B1;
-            viewModel.b2 = response.B2;
-            viewModel.w = response.W;
-            viewModel.beta1 = response.Beta1;
-            viewModel.beta2 = response.Beta2;
-            viewModel.johnsonType = response.JohnsonType;
+            viewModel.histogtamMean1stMomment = response.HistogramMean1stMomment;
+            viewModel.histogtamMean2ndtMomment = response.HistogramMean2ndtMomment;
+            viewModel.histogtamMean3rdMomment = response.HistogramMean3rdMomment;
+            viewModel.histogtamMean4thMomment = response.HistogramMean4thMomment;
+            viewModel.histogtamN2 = response.HistogramN2;
+            viewModel.histogtamN3 = response.HistogramN3;
+            viewModel.histogtamN4 = response.HistogramN4;
+            viewModel.histogtamB1 = response.HistogramB1;
+            viewModel.histogtamB2 = response.HistogramB2;
+            viewModel.histogtamW = response.HistogramW;
+            viewModel.histogtamBeta1 = response.HistogramBeta1;
+            viewModel.histogtamBeta2 = response.HistogramBeta2;
+            viewModel.histogtamJohnsonType = response.HistogramJohnsonType;
+
+            viewModel.solutionMean1stMomment = response.SolutionMean1stMomment;
+            viewModel.solutionMean2ndtMomment = response.SolutionMean2ndtMomment;
+            viewModel.solutionMean3rdMomment = response.SolutionMean3rdMomment;
+            viewModel.solutionMean4thMomment = response.SolutionMean4thMomment;
+            viewModel.solutionN2 = response.SolutionN2;
+            viewModel.solutionN3 = response.SolutionN3;
+            viewModel.solutionN4 = response.SolutionN4;
+            viewModel.solutionB1 = response.SolutionB1;
+            viewModel.solutionB2 = response.SolutionB2;
         }
     }
 }

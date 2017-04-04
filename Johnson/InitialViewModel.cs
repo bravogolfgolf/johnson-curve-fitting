@@ -2,18 +2,29 @@
 {
     public class InitialViewModel
     {
-        public double mean1stMomment;
-        public double mean2ndtMomment;
-        public double mean3rdMomment;
-        public double mean4thMomment;
-        public double n2;
-        public double n3;
-        public double n4;
-        public double b1;
-        public double b2;
-        public double w;
-        public double beta1;
-        public double beta2;
-        public string johnsonType;
+        public double histogtamMean1stMomment;
+        public double histogtamMean2ndtMomment;
+        public double histogtamMean3rdMomment;
+        public double histogtamMean4thMomment;
+        public double histogtamN2;
+        public double histogtamN3;
+        public double histogtamN4;
+        public double histogtamB1;
+        public double histogtamB2;
+        public double histogtamW;
+        public double histogtamBeta1;
+        public double histogtamBeta2;
+        public string histogtamJohnsonType;
+
+        public double solutionMean1stMomment;
+        public double solutionMean2ndtMomment;
+        public double solutionMean3rdMomment;
+        public double solutionMean4thMomment;
+        public double solutionN2;
+        public double solutionN3;
+        public double solutionN4;
+        public double solutionB1;
+        public double solutionB2;
+
     }
 }

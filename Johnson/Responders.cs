@@ -6,18 +6,28 @@
 
     public interface IInitialResponse
     {
-        double Mean1stMomment { get; set; }
-        double Mean2ndtMomment { get; set; }
-        double Mean3rdMomment { get; set; }
-        double Mean4thMomment { get; set; }
-        double N2 { get; set; }
-        double N3 { get; set; }
-        double N4 { get; set; }
-        double B1 { get; set; }
-        double B2 { get; set; }
-        double W { get; set; }
-        double Beta1 { get; set; }
-        double Beta2 { get; set; }
-        string JohnsonType { get; set; }
+        double HistogramMean1stMomment { get; set; }
+        double HistogramMean2ndtMomment { get; set; }
+        double HistogramMean3rdMomment { get; set; }
+        double HistogramMean4thMomment { get; set; }
+        double HistogramN2 { get; set; }
+        double HistogramN3 { get; set; }
+        double HistogramN4 { get; set; }
+        double HistogramB1 { get; set; }
+        double HistogramB2 { get; set; }
+        double HistogramW { get; set; }
+        double HistogramBeta1 { get; set; }
+        double HistogramBeta2 { get; set; }
+        string HistogramJohnsonType { get; set; }
+
+        double SolutionMean1stMomment { get; set; }
+        double SolutionMean2ndtMomment { get; set; }
+        double SolutionMean3rdMomment { get; set; }
+        double SolutionMean4thMomment { get; set; }
+        double SolutionN2 { get; set; }
+        double SolutionN3 { get; set; }
+        double SolutionN4 { get; set; }
+        double SolutionB1 { get; set; }
+        double SolutionB2 { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Excel = Microsoft.Office.Interop.Excel;
+﻿using System;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace Johnson
 {
@@ -6,15 +7,20 @@ namespace Johnson
 
     public class InitialView : IView
     {
+        private InitialViewModel viewModel;
+
         public void GenerateView(object viewModel)
         {
+            this.viewModel = (InitialViewModel)viewModel;
             ScreenShouldUpdate(false);
             AddWorksheet();
             EnterLabels();
-            EnterHistogramProperties((InitialViewModel)viewModel);
+            EnterHistogramProperties();
+            EnterSolutionProperties();
             FormatSheet();
             ScreenShouldUpdate(true);
         }
+
 
         private void ScreenShouldUpdate(bool setting)
         {
@@ -62,26 +68,50 @@ namespace Johnson
             Globals.ThisAddIn.Application.ActiveSheet.Range("B1").Offset(19).Value = "Shape";
         }
 
-        private void EnterHistogramProperties(InitialViewModel viewModel)
+        private void EnterHistogramProperties()
         {
-            Globals.ThisAddIn.Application.ActiveSheet.Range("C1").Offset(0).Value = "From Histogram";
+            const String CELL = "C1";
+            Globals.ThisAddIn.Application.ActiveSheet.Range(CELL).Offset(0).Value = "From Histogram";
 
-            Globals.ThisAddIn.Application.ActiveSheet.Range("C1").Offset(2).Value = viewModel.mean1stMomment;
-            Globals.ThisAddIn.Application.ActiveSheet.Range("C1").Offset(3).Value = viewModel.mean2ndtMomment;
-            Globals.ThisAddIn.Application.ActiveSheet.Range("C1").Offset(4).Value = viewModel.mean3rdMomment;
-            Globals.ThisAddIn.Application.ActiveSheet.Range("C1").Offset(5).Value = viewModel.mean4thMomment;
+            Globals.ThisAddIn.Application.ActiveSheet.Range(CELL).Offset(2).Value = viewModel.histogtamMean1stMomment;
+            Globals.ThisAddIn.Application.ActiveSheet.Range(CELL).Offset(3).Value = viewModel.histogtamMean2ndtMomment;
+            Globals.ThisAddIn.Application.ActiveSheet.Range(CELL).Offset(4).Value = viewModel.histogtamMean3rdMomment;
+            Globals.ThisAddIn.Application.ActiveSheet.Range(CELL).Offset(5).Value = viewModel.histogtamMean4thMomment;
 
-            Globals.ThisAddIn.Application.ActiveSheet.Range("C1").Offset(7).Value = viewModel.n2;
-            Globals.ThisAddIn.Application.ActiveSheet.Range("C1").Offset(8).Value = viewModel.n3;
-            Globals.ThisAddIn.Application.ActiveSheet.Range("C1").Offset(9).Value = viewModel.n4;
+            Globals.ThisAddIn.Application.ActiveSheet.Range(CELL).Offset(7).Value = viewModel.histogtamN2;
+            Globals.ThisAddIn.Application.ActiveSheet.Range(CELL).Offset(8).Value = viewModel.histogtamN3;
+            Globals.ThisAddIn.Application.ActiveSheet.Range(CELL).Offset(9).Value = viewModel.histogtamN4;
 
-            Globals.ThisAddIn.Application.ActiveSheet.Range("C1").Offset(11).Value = viewModel.b1;
-            Globals.ThisAddIn.Application.ActiveSheet.Range("C1").Offset(12).Value = viewModel.b2;
+            Globals.ThisAddIn.Application.ActiveSheet.Range(CELL).Offset(11).Value = viewModel.histogtamB1;
+            Globals.ThisAddIn.Application.ActiveSheet.Range(CELL).Offset(12).Value = viewModel.histogtamB2;
 
-            Globals.ThisAddIn.Application.ActiveSheet.Range("C1").Offset(14).Value = viewModel.w;
-            Globals.ThisAddIn.Application.ActiveSheet.Range("C1").Offset(15).Value = viewModel.beta1;
-            Globals.ThisAddIn.Application.ActiveSheet.Range("C1").Offset(16).Value = viewModel.beta2;
-            Globals.ThisAddIn.Application.ActiveSheet.Range("C1").Offset(17).Value = viewModel.johnsonType;
+            Globals.ThisAddIn.Application.ActiveSheet.Range(CELL).Offset(14).Value = viewModel.histogtamW;
+            Globals.ThisAddIn.Application.ActiveSheet.Range(CELL).Offset(15).Value = viewModel.histogtamBeta1;
+            Globals.ThisAddIn.Application.ActiveSheet.Range(CELL).Offset(16).Value = viewModel.histogtamBeta2;
+            Globals.ThisAddIn.Application.ActiveSheet.Range(CELL).Offset(17).Value = viewModel.histogtamJohnsonType;
+        }
+
+        private void EnterSolutionProperties()
+        {
+            const String CELL = "D1";
+            Globals.ThisAddIn.Application.ActiveSheet.Range(CELL).Offset(0).Value = "From Fit";
+
+            Globals.ThisAddIn.Application.ActiveSheet.Range(CELL).Offset(2).Value = viewModel.solutionMean1stMomment;
+            Globals.ThisAddIn.Application.ActiveSheet.Range(CELL).Offset(3).Value = viewModel.solutionMean2ndtMomment;
+            Globals.ThisAddIn.Application.ActiveSheet.Range(CELL).Offset(4).Value = viewModel.solutionMean3rdMomment;
+            Globals.ThisAddIn.Application.ActiveSheet.Range(CELL).Offset(5).Value = viewModel.solutionMean4thMomment;
+
+            Globals.ThisAddIn.Application.ActiveSheet.Range(CELL).Offset(7).Value = viewModel.solutionN2;
+            Globals.ThisAddIn.Application.ActiveSheet.Range(CELL).Offset(8).Value = viewModel.solutionN3;
+            Globals.ThisAddIn.Application.ActiveSheet.Range(CELL).Offset(9).Value = viewModel.solutionN4;
+
+            Globals.ThisAddIn.Application.ActiveSheet.Range(CELL).Offset(11).Value = viewModel.solutionB1;
+            Globals.ThisAddIn.Application.ActiveSheet.Range(CELL).Offset(12).Value = viewModel.solutionB2;
+
+            Globals.ThisAddIn.Application.ActiveSheet.Range(CELL).Offset(14).Value = "N/A";
+            Globals.ThisAddIn.Application.ActiveSheet.Range(CELL).Offset(15).Value = "N/A";
+            Globals.ThisAddIn.Application.ActiveSheet.Range(CELL).Offset(16).Value = "N/A";
+            Globals.ThisAddIn.Application.ActiveSheet.Range(CELL).Offset(17).Value = "N/A";
         }
 
         private void FormatSheet()

@@ -19,8 +19,16 @@ namespace Entities
             this.histogram = histogram;
         }
 
+        public static Solution Create(Histogram histogram)
+        {
+            if(histogram.JohnsonType.Equals("SB"))
+                return new SolutionSB(histogram);
+            return new SolutionSU(histogram);
+        }
+
         public double[] YSeries
         { get { return ySeries; } }
+
 
         public double[] FunctionOfYSeries
         { get { return functionOfYSeries; } }

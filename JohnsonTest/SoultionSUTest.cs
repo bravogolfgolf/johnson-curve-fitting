@@ -15,7 +15,7 @@ namespace Entities
         public void SetUp()
         {
             histogram = new Histogram(intervals, frequencies);
-            solution = new SolutionSU(histogram);
+            solution =  Solution.Create(histogram);
         }
 
         [TestMethod]
