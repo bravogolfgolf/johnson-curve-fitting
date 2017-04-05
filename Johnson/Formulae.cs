@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace Utilities
+namespace Entities
 {
     public static class Formulae
     {

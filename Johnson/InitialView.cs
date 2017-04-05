@@ -14,10 +14,7 @@ namespace Johnson
             this.viewModel = (InitialViewModel)viewModel;
             ScreenShouldUpdate(false);
             CreatePropertiesSheet();
-            AddWorksheet();
-            EnterDataLabels();
-            EnterDataValues();
-            FormatDataSheet();
+            CreateDataSheet();
             ScreenShouldUpdate(true);
         }
 
@@ -35,10 +32,18 @@ namespace Johnson
             FormatPropertySheet();
         }
 
+        private void CreateDataSheet()
+        {
+            AddWorksheet();
+            EnterDataLabels();
+            EnterDataValues();
+            FormatDataSheet();
+        }
+
         private void AddWorksheet()
         {
             Excel.Worksheet lastWorksheet = getLastWorksheetInWorkbook();
-            Excel.Worksheet worksheet = AddNewWorksheetAfter(lastWorksheet);
+            AddNewWorksheetAfter(lastWorksheet);
         }
 
         private Excel.Worksheet getLastWorksheetInWorkbook()
@@ -48,9 +53,9 @@ namespace Johnson
             return lastWorksheet;
         }
 
-        private Excel.Worksheet AddNewWorksheetAfter(Excel.Worksheet lastWorksheet)
+        private void AddNewWorksheetAfter(Excel.Worksheet lastWorksheet)
         {
-            return Globals.ThisAddIn.Application.Worksheets.Add(After: lastWorksheet);
+            Globals.ThisAddIn.Application.Worksheets.Add(After: lastWorksheet);
         }
 
         private void EnterPropertyLabels()
