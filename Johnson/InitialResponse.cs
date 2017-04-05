@@ -4,6 +4,9 @@ namespace Usecases
 {
     public class InitialResponse : IInitialResponse
     {
+        private double[] intervals;
+        private double[] frequencies;
+
         private double histogramMean1stMomment;
         private double histogramMean2ndtMomment;
         private double histogramMean3rdMomment;
@@ -18,6 +21,12 @@ namespace Usecases
         private double histogramBeta2;
         private string histogramJohnsonType;
 
+        private double[] ySeries;
+        private double[] functionOfYSeries;
+        private double[] zEndSeries;
+        private double[] cumNormalSeries;
+        private double[] graduationSeries;
+
         private double solutionMean1stMomment;
         private double solutionMean2ndtMomment;
         private double solutionMean3rdMomment;
@@ -28,6 +37,8 @@ namespace Usecases
         private double solutionB1;
         private double solutionB2;
 
+        public double[] Intervals { get => intervals; set => intervals = value; }
+        public double[] Frequencies { get => frequencies; set => frequencies = value; }
 
         public double HistogramMean1stMomment { get => histogramMean1stMomment; set => histogramMean1stMomment = value; }
         public double HistogramMean2ndtMomment { get => histogramMean2ndtMomment; set => histogramMean2ndtMomment = value; }
@@ -42,6 +53,12 @@ namespace Usecases
         public double HistogramBeta1 { get => histogramBeta1; set => histogramBeta1 = value; }
         public double HistogramBeta2 { get => histogramBeta2; set => histogramBeta2 = value; }
         public string HistogramJohnsonType { get => histogramJohnsonType; set => histogramJohnsonType = value; }
+
+        public double[] YSeries { get => ySeries; set => ySeries = value; }
+        public double[] FunctionOfYSeries { get => functionOfYSeries; set => functionOfYSeries = value; }
+        public double[] ZEndSeries { get => zEndSeries; set => zEndSeries = value; }
+        public double[] CumNormalSeries { get => cumNormalSeries; set => cumNormalSeries = value; }
+        public double[] GraduationSeries { get => graduationSeries; set => graduationSeries = value; }
 
         public double SolutionMean1stMomment { get => solutionMean1stMomment; set => solutionMean1stMomment = value; }
         public double SolutionMean2ndtMomment { get => solutionMean2ndtMomment; set => solutionMean2ndtMomment = value; }

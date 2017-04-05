@@ -6,6 +6,9 @@
 
     public interface IInitialResponse
     {
+        double[] Intervals { get; set; }
+        double[] Frequencies { get; set; }
+
         double HistogramMean1stMomment { get; set; }
         double HistogramMean2ndtMomment { get; set; }
         double HistogramMean3rdMomment { get; set; }
@@ -19,6 +22,12 @@
         double HistogramBeta1 { get; set; }
         double HistogramBeta2 { get; set; }
         string HistogramJohnsonType { get; set; }
+
+        double[] YSeries { get; set; }
+        double[] FunctionOfYSeries { get; set; }
+        double[] ZEndSeries { get; set; }
+        double[] CumNormalSeries { get; set; }
+        double[] GraduationSeries { get; set; }
 
         double SolutionMean1stMomment { get; set; }
         double SolutionMean2ndtMomment { get; set; }

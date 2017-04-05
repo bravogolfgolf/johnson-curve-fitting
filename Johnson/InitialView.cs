@@ -13,18 +13,26 @@ namespace Johnson
         {
             this.viewModel = (InitialViewModel)viewModel;
             ScreenShouldUpdate(false);
+            CreatePropertiesSheet();
             AddWorksheet();
-            EnterLabels();
-            EnterHistogramProperties();
-            EnterSolutionProperties();
-            FormatSheet();
+            EnterDataLabels();
+            EnterDataValues();
+            FormatDataSheet();
             ScreenShouldUpdate(true);
         }
-
 
         private void ScreenShouldUpdate(bool setting)
         {
             Globals.ThisAddIn.Application.ScreenUpdating = setting;
+        }
+
+        private void CreatePropertiesSheet()
+        {
+            AddWorksheet();
+            EnterPropertyLabels();
+            EnterHistogramValues();
+            EnterSolutionValues();
+            FormatPropertySheet();
         }
 
         private void AddWorksheet()
@@ -45,7 +53,7 @@ namespace Johnson
             return Globals.ThisAddIn.Application.Worksheets.Add(After: lastWorksheet);
         }
 
-        private void EnterLabels()
+        private void EnterPropertyLabels()
         {
             Globals.ThisAddIn.Application.ActiveSheet.Range("A1").Offset(1).Value = "Moments about origin";
             Globals.ThisAddIn.Application.ActiveSheet.Range("B1").Offset(2).Value = "1st moment";
@@ -68,7 +76,7 @@ namespace Johnson
             Globals.ThisAddIn.Application.ActiveSheet.Range("B1").Offset(19).Value = "Shape";
         }
 
-        private void EnterHistogramProperties()
+        private void EnterHistogramValues()
         {
             const String CELL = "C1";
             Globals.ThisAddIn.Application.ActiveSheet.Range(CELL).Offset(0).Value = "From Histogram";
@@ -91,7 +99,7 @@ namespace Johnson
             Globals.ThisAddIn.Application.ActiveSheet.Range(CELL).Offset(17).Value = viewModel.histogtamJohnsonType;
         }
 
-        private void EnterSolutionProperties()
+        private void EnterSolutionValues()
         {
             const String CELL = "D1";
             Globals.ThisAddIn.Application.ActiveSheet.Range(CELL).Offset(0).Value = "From Fit";
@@ -114,7 +122,7 @@ namespace Johnson
             Globals.ThisAddIn.Application.ActiveSheet.Range(CELL).Offset(17).Value = "N/A";
         }
 
-        private void FormatSheet()
+        private void FormatPropertySheet()
         {
             Excel.Range selection = Globals.ThisAddIn.Application.ActiveSheet.Cells;
             selection.Style = "Comma";
@@ -133,6 +141,43 @@ namespace Johnson
             selection = Globals.ThisAddIn.Application.ActiveSheet.Columns("C:D");
             selection.HorizontalAlignment = Excel.Constants.xlRight;
 
+            selection = Globals.ThisAddIn.Application.ActiveSheet.Range("A1");
+        }
+
+        private void EnterDataLabels()
+        {
+            Globals.ThisAddIn.Application.ActiveSheet.Range("A1").Value = "X";
+            Globals.ThisAddIn.Application.ActiveSheet.Range("B1").Value = "Frequency";
+            Globals.ThisAddIn.Application.ActiveSheet.Range("C1").Value = "Y";
+            Globals.ThisAddIn.Application.ActiveSheet.Range("D1").Value = "F(Y)";
+            Globals.ThisAddIn.Application.ActiveSheet.Range("E1").Value = "Z End";
+            Globals.ThisAddIn.Application.ActiveSheet.Range("F1").Value = "Cum Normal";
+            Globals.ThisAddIn.Application.ActiveSheet.Range("G1").Value = "Graduation";
+        }
+
+        private void EnterDataValues()
+        {
+            for (int i = 0; i < viewModel.intervals.Length; i++)
+            {
+                int row = i + 2;
+                Globals.ThisAddIn.Application.ActiveSheet.Range("A" + row).Value = viewModel.intervals[i];
+                Globals.ThisAddIn.Application.ActiveSheet.Range("B" + row).Value = viewModel.frequencies[i];
+                Globals.ThisAddIn.Application.ActiveSheet.Range("C" + row).Value = viewModel.ySeries[i];
+                Globals.ThisAddIn.Application.ActiveSheet.Range("D" + row).Value = viewModel.functionOfYSeries[i];
+                if (i != viewModel.intervals.Length - 1)
+                    Globals.ThisAddIn.Application.ActiveSheet.Range("E" + row).Value = viewModel.zEndSeries[i];
+                Globals.ThisAddIn.Application.ActiveSheet.Range("F" + row).Value = viewModel.cumNormalSeries[i];
+                Globals.ThisAddIn.Application.ActiveSheet.Range("G" + row).Value = viewModel.graduationSeries[i];
+            }
+        }
+
+        private void FormatDataSheet()
+        {
+            Excel.Range selection = Globals.ThisAddIn.Application.ActiveSheet.Cells;
+            selection.Style = "Comma";
+            selection.NumberFormat = "_(* #,##0.0000_);_(* -#,##0.0000_);_(@_)";
+            selection.ColumnWidth = 20;
+            selection.HorizontalAlignment = Excel.Constants.xlRight;
             selection = Globals.ThisAddIn.Application.ActiveSheet.Range("A1");
         }
     }

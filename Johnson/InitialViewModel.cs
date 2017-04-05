@@ -2,6 +2,9 @@
 {
     public class InitialViewModel
     {
+        public double[] intervals;
+        public double[] frequencies;
+
         public double histogtamMean1stMomment;
         public double histogtamMean2ndtMomment;
         public double histogtamMean3rdMomment;
@@ -15,6 +18,12 @@
         public double histogtamBeta1;
         public double histogtamBeta2;
         public string histogtamJohnsonType;
+
+        public double[] ySeries;
+        public double[] functionOfYSeries;
+        public double[] zEndSeries;
+        public double[] cumNormalSeries;
+        public double[] graduationSeries;
 
         public double solutionMean1stMomment;
         public double solutionMean2ndtMomment;

@@ -28,6 +28,9 @@ namespace Usecases
         {
             IInitialResponse response = new InitialResponse()
             {
+                Intervals = histogram.Intervals,
+                Frequencies = histogram.Frequencies,
+
                 HistogramMean1stMomment = histogram.FirstMomentAboutOrigin,
                 HistogramMean2ndtMomment = histogram.SecondMomentAboutOrigin,
                 HistogramMean3rdMomment = histogram.ThirdMomentAboutOrigin,
@@ -41,6 +44,12 @@ namespace Usecases
                 HistogramBeta1 = histogram.Beta1,
                 HistogramBeta2 = histogram.Beta2,
                 HistogramJohnsonType = histogram.JohnsonType,
+
+                YSeries = solution.YSeries,
+                FunctionOfYSeries = solution.FunctionOfYSeries,
+                ZEndSeries = solution.ZEndSeries,
+                CumNormalSeries = solution.CumNormalSeries,
+                GraduationSeries=solution.GraduationSeries,
 
                 SolutionMean1stMomment = solution.FirstMomentAboutOrigin,
                 SolutionMean2ndtMomment = solution.SecondMomentAboutOrigin,

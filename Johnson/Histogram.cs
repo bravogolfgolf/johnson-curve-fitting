@@ -14,6 +14,8 @@ namespace Entities
             this.frequencies = frequencies;
         }
 
+        public double[] Intervals { get { return intervals; } }
+
         public double[] Frequencies { get { return frequencies; } }
 
         public int NumberOfEntries
