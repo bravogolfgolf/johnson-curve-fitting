@@ -7,7 +7,12 @@ namespace Johnson
 
     public class InitialView : IView
     {
+        private const String GRADUATION_VALUES = "Graduation_Values";
+        private const String FREQUENCIES_VALUES = "Frequencies_Values";
+        private const String X_VALUES = "X_Values";
         private InitialViewModel viewModel;
+        private Excel.Worksheet dataSheet;
+        private Excel.Chart chartSheet;
 
         public void GenerateView(object viewModel)
         {
@@ -15,6 +20,7 @@ namespace Johnson
             ScreenShouldUpdate(false);
             CreatePropertiesSheet();
             CreateDataSheet();
+            CreateChartSheet();
             ScreenShouldUpdate(true);
         }
 
@@ -34,28 +40,29 @@ namespace Johnson
 
         private void CreateDataSheet()
         {
-            AddWorksheet();
+            dataSheet = AddWorksheet();
             EnterDataLabels();
+            CreateNamedRanges();
             EnterDataValues();
             FormatDataSheet();
         }
 
-        private void AddWorksheet()
+        private void CreateChartSheet()
         {
-            Excel.Worksheet lastWorksheet = getLastWorksheetInWorkbook();
-            AddNewWorksheetAfter(lastWorksheet);
+            AddChartSheet();
+            MoveChartSheet();
+            AddSeriesToChart();
         }
 
-        private Excel.Worksheet getLastWorksheetInWorkbook()
+        private Excel.Worksheet AddWorksheet()
         {
-            int count = Globals.ThisAddIn.Application.Sheets.Count;
-            Excel.Worksheet lastWorksheet = Globals.ThisAddIn.Application.ActiveWorkbook.Sheets[count];
-            return lastWorksheet;
+            int count = WorksheetsCount();
+            return Globals.ThisAddIn.Application.Worksheets.Add(After: Globals.ThisAddIn.Application.ActiveWorkbook.Worksheets[count]);
         }
 
-        private void AddNewWorksheetAfter(Excel.Worksheet lastWorksheet)
+        private int WorksheetsCount()
         {
-            Globals.ThisAddIn.Application.Worksheets.Add(After: lastWorksheet);
+            return Globals.ThisAddIn.Application.Worksheets.Count;
         }
 
         private void EnterPropertyLabels()
@@ -160,6 +167,22 @@ namespace Johnson
             Globals.ThisAddIn.Application.ActiveSheet.Range("G1").Value = "Graduation";
         }
 
+        private void CreateNamedRanges()
+        {
+            const int FIRST_ROW_IN_RANGE = 2;
+            const int COLUMN_B = 2;
+            const int COLUMN_C = 3;
+            const int COLUMN_G = 7;
+            int lastRowInRange = FIRST_ROW_IN_RANGE + viewModel.intervals.Length - 1;
+
+            Excel.Range range = dataSheet.Range[dataSheet.Cells[FIRST_ROW_IN_RANGE, COLUMN_B], dataSheet.Cells[lastRowInRange, COLUMN_B]];
+            range.Name = FREQUENCIES_VALUES;
+            range = dataSheet.Range[dataSheet.Cells[FIRST_ROW_IN_RANGE, COLUMN_C], dataSheet.Cells[lastRowInRange, COLUMN_C]];
+            range.Name = X_VALUES;
+            range = dataSheet.Range[dataSheet.Cells[FIRST_ROW_IN_RANGE, COLUMN_G], dataSheet.Cells[lastRowInRange, COLUMN_G]];
+            range.Name = GRADUATION_VALUES;
+        }
+
         private void EnterDataValues()
         {
             for (int i = 0; i < viewModel.intervals.Length; i++)
@@ -184,6 +207,37 @@ namespace Johnson
             selection.ColumnWidth = 20;
             selection.HorizontalAlignment = Excel.Constants.xlRight;
             selection = Globals.ThisAddIn.Application.ActiveSheet.Range("A1");
+        }
+
+        private void AddChartSheet()
+        {
+            int count = WorksheetsCount();
+            chartSheet = Globals.ThisAddIn.Application.Charts.Add(After: Globals.ThisAddIn.Application.ActiveWorkbook.Worksheets[count]);
+            Globals.ThisAddIn.Application.ActiveChart.Type = (int)Excel.XlChartType.xlLine;
+        }
+
+        private void MoveChartSheet()
+        {
+            int count = WorksheetsCount();
+            chartSheet.Move(Type.Missing, Globals.ThisAddIn.Application.ActiveWorkbook.Worksheets[count]);
+        }
+
+        private void AddSeriesToChart()
+        {
+            while (Globals.ThisAddIn.Application.ActiveChart.SeriesCollection().Count() != 0)
+                Globals.ThisAddIn.Application.ActiveChart.SeriesCollection(1).Delete();
+
+            Excel.Range graduationRange = Globals.ThisAddIn.Application.Sheets[dataSheet.Index].Range[GRADUATION_VALUES];
+            Excel.Range frequencyRange = Globals.ThisAddIn.Application.Sheets[dataSheet.Index].Range[FREQUENCIES_VALUES];
+            Excel.Range xRange = Globals.ThisAddIn.Application.Sheets[dataSheet.Index].Range[X_VALUES];
+
+            Excel.Series series = (Excel.Series)Globals.ThisAddIn.Application.ActiveChart.SeriesCollection().Add(frequencyRange);
+            series.Name = Globals.ThisAddIn.Application.Sheets[dataSheet.Index].Range("B1").Value();
+            series.XValues = xRange;
+
+            series = (Excel.Series)Globals.ThisAddIn.Application.ActiveChart.SeriesCollection().Add(graduationRange);
+            series.Name = Globals.ThisAddIn.Application.Sheets[dataSheet.Index].Range("G1").Value();
+            series.XValues = xRange;
         }
     }
 }
