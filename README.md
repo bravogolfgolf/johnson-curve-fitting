@@ -1,2 +1,2 @@
-# johnson-curve-fitting
-VSTO add-ins for Excel
+# Johnson Curve Fitting
+Excel Addin for fitting an initial curve to a histogram using Johnson method. Requirements were presented in an Excel spreadsheet with many formulae and piecemeal VBA-macros, developed by an individual with expert knowledge on the Johnson method, but not software development. Project developed in C# using (Visual Studio Tools for Office) VSTO. While this left in place the coupling to Excel, which was now only used as the UI, it left opened the possibility of abstracting out the initial curve optimization functionality — initially implemented with Excel’s Solver Addin.
